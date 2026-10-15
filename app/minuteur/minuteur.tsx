@@ -7,6 +7,7 @@
 // reste juste même si le navigateur ralentit un onglet en arrière-plan.
 
 import { useEffect, useRef, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { useEcranAllume, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, HEURE, MINUTE, SECONDE } from "@/lib/temps";
@@ -157,11 +158,7 @@ export default function Minuteur() {
           <button className="bouton" onClick={remettreAZero}>
             Remettre à zéro
           </button>
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
 

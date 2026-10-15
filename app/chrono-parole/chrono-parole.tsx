@@ -11,6 +11,7 @@
 //    (avance ou retard), ainsi que l'avance ou le retard cumulé du programme.
 
 import { useEffect, useRef, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { useChrono, useEcranAllume, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, formaterDuree, SECONDE } from "@/lib/temps";
@@ -249,11 +250,7 @@ export default function ChronoParole() {
                 Recommencer
               </button>
             )}
-            {pleinEcran.possible && (
-              <button className="bouton" onClick={pleinEcran.basculer}>
-                {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-              </button>
-            )}
+            <BoutonPleinEcran pleinEcran={pleinEcran} />
           </div>
         </div>
       )}

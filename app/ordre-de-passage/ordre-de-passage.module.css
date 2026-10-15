@@ -56,3 +56,15 @@
     animation: none;
   }
 }
+
+/* Plein écran : colonnes et taille calculées pour tout faire tenir (useAjusterAuPleinEcran) */
+:global(.ecran-plein) .ordre {
+  grid-template-columns: repeat(var(--colonnes, 1), minmax(0, 1fr));
+  gap: 0.35em 0.6em;
+  margin: 0;
+}
+
+:global(.ecran-plein) .ordre li {
+  padding: 0.35em 0.6em;
+  font-size: 1em;
+}

@@ -7,6 +7,7 @@
 // en haut. L'animation est donc un spectacle : elle ne change rien au hasard.
 
 import { useEffect, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import ChampNoms, { useListeNoms } from "@/components/liste-noms";
 import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { entierAleatoire } from "@/lib/hasard";
@@ -326,11 +327,7 @@ export default function Roue() {
           <button className="bouton bouton-principal" onClick={tourner} disabled={enRotation || presents.length === 0}>
             {enRotation ? "La roue tourne..." : "Faire tourner"}
           </button>
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
 
         {choix.length > 0 && (

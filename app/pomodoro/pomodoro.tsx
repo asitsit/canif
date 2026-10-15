@@ -5,6 +5,7 @@
 // Par défaut : 25 min de travail, 5 min de pause, 15 min de pause longue tous les 4 cycles.
 
 import { useEffect, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { useChrono, useEcranAllume, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, MINUTE } from "@/lib/temps";
@@ -151,11 +152,7 @@ export default function Pomodoro() {
           <button className="bouton" onClick={toutReinitialiser}>
             Tout recommencer
           </button>
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
 

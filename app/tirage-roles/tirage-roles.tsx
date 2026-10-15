@@ -6,10 +6,11 @@
 //   en trop restent non attribués, ou certaines personnes reçoivent plusieurs rôles.
 // Des cadres connus (six chapeaux de Bono, Belbin...) aident à remplir la liste.
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BoutonCopier from "@/components/bouton-copier";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import ChampNoms, { useListeNoms } from "@/components/liste-noms";
-import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
+import { useAjusterAuPleinEcran, usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { lireListe, melanger } from "@/lib/hasard";
 import { CADRES } from "./cadres";
 import styles from "./tirage-roles.module.css";
@@ -31,6 +32,7 @@ export default function TirageRoles() {
   const [rolesNonAttribues, setRolesNonAttribues] = useState<string[]>([]);
 
   const pleinEcran = usePleinEcran<HTMLDivElement>();
+  const listeRef = useRef<HTMLUListElement>(null);
   const roles = lireListe(texteRoles);
   const nbPersonnes = liste.noms.length;
   const rolesEnTrop = Math.max(roles.length - nbPersonnes, 0);
@@ -92,6 +94,9 @@ export default function TirageRoles() {
   const texteACopier = attributions
     .map((a) => `${a.role ?? "Sans rôle particulier"} : ${a.nom}`)
     .join("\n");
+
+  // En plein écran, toute la liste tient sur un seul écran, en restant lisible.
+  useAjusterAuPleinEcran(pleinEcran.ref, listeRef, pleinEcran.actif, attributions);
 
   useRaccourcis({ " ": tirer, f: () => pleinEcran.possible && pleinEcran.basculer() });
 
@@ -186,7 +191,7 @@ export default function TirageRoles() {
         {attributions.length === 0 ? (
           <p className="discret">Saisissez les noms et les rôles puis cliquez sur « Attribuer les rôles ».</p>
         ) : (
-          <ul className={styles.attributions} aria-live="polite">
+          <ul ref={listeRef} className={styles.attributions} aria-live="polite">
             {attributions.map((a, i) => (
               <li key={i} className={a.role ? "" : styles.sansRole}>
                 <span className={styles.role}>{a.role ?? "Sans rôle particulier"}</span>
@@ -201,12 +206,8 @@ export default function TirageRoles() {
         )}
 
         <div className="commandes">
-          {attributions.length > 0 && <BoutonCopier texte={texteACopier} />}
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          {attributions.length > 0 && !pleinEcran.actif && <BoutonCopier texte={texteACopier} />}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
     </div>

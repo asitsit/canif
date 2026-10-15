@@ -3,10 +3,11 @@
 // Ordre de passage : mélange la liste de noms. L'ordre peut être affiché
 // d'un coup, ou révélé nom par nom (pour garder le suspense devant le groupe).
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BoutonCopier from "@/components/bouton-copier";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import ChampNoms, { useListeNoms } from "@/components/liste-noms";
-import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
+import { useAjusterAuPleinEcran, usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { melanger } from "@/lib/hasard";
 import styles from "./ordre-de-passage.module.css";
 
@@ -17,6 +18,7 @@ export default function OrdreDePassage() {
   const [reveles, setReveles] = useState(0); // nombre de noms affichés (mode un par un)
 
   const pleinEcran = usePleinEcran<HTMLDivElement>();
+  const listeRef = useRef<HTMLOListElement>(null);
 
   function tirer() {
     if (liste.noms.length === 0) return;
@@ -31,6 +33,9 @@ export default function OrdreDePassage() {
   const toutRevele = reveles >= ordre.length;
   const visibles = ordre.slice(0, reveles);
   const texteACopier = ordre.map((nom, i) => `${i + 1}. ${nom}`).join("\n");
+
+  // En plein écran, toute la liste tient sur un seul écran, en restant lisible.
+  useAjusterAuPleinEcran(pleinEcran.ref, listeRef, pleinEcran.actif, reveles);
 
   useRaccourcis({
     " ": () => (ordre.length > 0 && !toutRevele ? revelerSuivant() : tirer()),
@@ -59,7 +64,7 @@ export default function OrdreDePassage() {
 
         {ordre.length > 0 && (
           <>
-            <ol className={styles.ordre} aria-live="polite">
+            <ol ref={listeRef} className={styles.ordre} aria-live="polite">
               {visibles.map((nom, i) => (
                 <li key={i} className={i === reveles - 1 && !toutRevele ? styles.dernier : ""}>
                   <span className={styles.numero}>{i + 1}</span>
@@ -87,12 +92,8 @@ export default function OrdreDePassage() {
               Tout révéler
             </button>
           )}
-          {ordre.length > 0 && toutRevele && <BoutonCopier texte={texteACopier} />}
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          {ordre.length > 0 && toutRevele && !pleinEcran.actif && <BoutonCopier texte={texteACopier} />}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
     </div>

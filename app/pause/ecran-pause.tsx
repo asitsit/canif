@@ -4,6 +4,7 @@
 // puis on projette. L'écran affiche le message, l'heure de reprise et le temps restant.
 
 import { useEffect, useRef, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { useEcranAllume, useMaintenant, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, formaterHeure, MINUTE } from "@/lib/temps";
@@ -110,11 +111,7 @@ export default function EcranPause() {
             <button className="bouton" onClick={arreter}>
               Terminer la pause
             </button>
-            {pleinEcran.possible && (
-              <button className="bouton" onClick={pleinEcran.basculer}>
-                {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-              </button>
-            )}
+            <BoutonPleinEcran pleinEcran={pleinEcran} />
           </div>
         )}
       </div>

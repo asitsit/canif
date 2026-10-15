@@ -108,3 +108,16 @@
   flex-wrap: wrap;
   gap: 8px 20px;
 }
+
+/* Plein écran : colonnes et taille calculées pour tout faire tenir (useAjusterAuPleinEcran) */
+:global(.ecran-plein) .attributions {
+  grid-template-columns: repeat(var(--colonnes, 1), minmax(0, 1fr));
+  gap: 0.35em 0.6em;
+  margin: 0;
+}
+
+:global(.ecran-plein) .attributions li {
+  padding: 0.35em 0.6em;
+  gap: 0.6em;
+  border-left-width: 0.25em;
+}

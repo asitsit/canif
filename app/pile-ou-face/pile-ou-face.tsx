@@ -4,6 +4,7 @@
 // Le résultat est tiré AVANT l'animation : l'animation ne change rien au hasard.
 
 import { useEffect, useState } from "react";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { entierAleatoire } from "@/lib/hasard";
 import styles from "./pile-ou-face.module.css";
@@ -65,11 +66,7 @@ export default function PileOuFace() {
           <button className="bouton bouton-principal" onClick={lancer} disabled={enLancer}>
             Lancer
           </button>
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
 

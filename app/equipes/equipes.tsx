@@ -2,10 +2,11 @@
 
 // Générateur d'équipes : répartit la liste de noms au hasard en équipes équilibrées.
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BoutonCopier from "@/components/bouton-copier";
+import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import ChampNoms, { useListeNoms } from "@/components/liste-noms";
-import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
+import { useAjusterAuPleinEcran, usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { nombreEquipes, repartir, type Mode } from "./repartition";
 import styles from "./equipes.module.css";
 
@@ -16,6 +17,7 @@ export default function Equipes() {
   const [equipes, setEquipes] = useState<string[][]>([]);
 
   const pleinEcran = usePleinEcran<HTMLDivElement>();
+  const grilleRef = useRef<HTMLDivElement>(null);
 
   const valeur = Math.max(1, Math.round(Number(saisieValeur)) || 1);
   const nbEquipes = nombreEquipes(liste.noms.length, mode, valeur);
@@ -25,6 +27,9 @@ export default function Equipes() {
   }
 
   const texteACopier = equipes.map((e, i) => `Équipe ${i + 1} : ${e.join(", ")}`).join("\n");
+
+  // En plein écran, toutes les équipes tiennent sur un seul écran, en restant lisibles.
+  useAjusterAuPleinEcran(pleinEcran.ref, grilleRef, pleinEcran.actif, equipes, { maxColonnes: 6 });
 
   useRaccourcis({ " ": former, f: () => pleinEcran.possible && pleinEcran.basculer() });
 
@@ -100,7 +105,7 @@ export default function Equipes() {
           </p>
         )}
         {equipes.length > 0 && (
-          <div className={styles.grille} aria-live="polite">
+          <div ref={grilleRef} className={styles.grille} aria-live="polite">
             {equipes.map((membres, i) => (
               <section key={i} className={styles.equipe} style={{ borderTopColor: `var(--equipe-${i % 8})` }}>
                 <h3>
@@ -117,12 +122,8 @@ export default function Equipes() {
         )}
 
         <div className="commandes">
-          {equipes.length > 0 && <BoutonCopier texte={texteACopier} />}
-          {pleinEcran.possible && (
-            <button className="bouton" onClick={pleinEcran.basculer}>
-              {pleinEcran.actif ? "Quitter le plein écran" : "Plein écran"}
-            </button>
-          )}
+          {equipes.length > 0 && !pleinEcran.actif && <BoutonCopier texte={texteACopier} />}
+          <BoutonPleinEcran pleinEcran={pleinEcran} />
         </div>
       </div>
     </div>

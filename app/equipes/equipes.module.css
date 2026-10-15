@@ -47,3 +47,18 @@
   padding: 2px 0;
   overflow-wrap: anywhere;
 }
+
+/* Plein écran : colonnes et taille calculées pour tout faire tenir (useAjusterAuPleinEcran) */
+:global(.ecran-plein) .grille {
+  grid-template-columns: repeat(var(--colonnes, 3), minmax(0, 1fr));
+  gap: 0.5em;
+  margin: 0;
+}
+
+:global(.ecran-plein) .equipe {
+  padding: 0.4em 0.6em;
+}
+
+:global(.ecran-plein) .equipe li {
+  padding: 0.05em 0;
+}

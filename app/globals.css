@@ -339,10 +339,36 @@ h2 {
 .resultat.ecran-plein {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   border: none;
   border-radius: 0;
   font-size: 1.6rem;
+  padding: 64px 24px 24px; /* place en haut pour le bouton « Quitter » */
+}
+
+/* En plein écran : défilement possible si le contenu ne tient vraiment pas */
+.ecran-plein {
+  overflow: auto;
+}
+
+/* Bouton « Quitter le plein écran », toujours visible en haut à droite */
+.bouton-quitter-plein-ecran {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.touche {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--bordure);
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-weight: 400;
+  color: var(--texte-discret);
 }
 
 .mise-en-page-tirage {
@@ -416,7 +442,7 @@ h2 {
 .ecran-plein {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   border: none;
   border-radius: 0;
   padding: 32px;
@@ -474,7 +500,7 @@ h2 {
 .commandes {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: safe center;
   gap: 8px;
 }
 
