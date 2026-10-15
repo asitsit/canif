@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import EnteteOutil from "@/components/entete-outil";
 import { tousLesOutils, trouverOutil } from "@/lib/catalogue";
 
 // Page d'attente commune à tous les outils pas encore construits.
@@ -11,9 +12,10 @@ import { tousLesOutils, trouverOutil } from "@/lib/catalogue";
 
 type Props = { params: Promise<{ outil: string }> };
 
-// Prépare à l'avance une page pour chaque outil du catalogue.
+// Prépare à l'avance une page pour chaque outil du catalogue pas encore prêt
+// (les outils prêts ont leur propre dossier).
 export function generateStaticParams() {
-  return tousLesOutils.map((o) => ({ outil: o.slug }));
+  return tousLesOutils.filter((o) => !o.pret).map((o) => ({ outil: o.slug }));
 }
 
 // Toute adresse absente du catalogue affiche la page « introuvable ».
@@ -30,16 +32,11 @@ export default async function PageOutil({ params }: Props) {
   const trouve = trouverOutil(slug);
   if (!trouve) notFound();
 
-  const { outil, rubrique } = trouve;
+  const { outil } = trouve;
 
   return (
     <article className="page-outil">
-      <p className="fil">
-        <Link href="/">Accueil</Link> / <Link href={`/#${rubrique.id}`}>{rubrique.titre}</Link>
-      </p>
-
-      <h1>{outil.nom}</h1>
-      {outil.detail && <p className="discret">{outil.detail}</p>}
+      <EnteteOutil slug={slug} />
 
       <div className="encadre">
         <p>
