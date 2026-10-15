@@ -24,6 +24,10 @@
 | P15 | Second mécanisme de maintien en vie : route `/api/keepalive` appelée chaque jour par Vercel Cron (`vercel.json`, 05:00 UTC), protégée par la variable `CRON_SECRET` | 15/10/2026 |
 | P16 | Projet Supabase créé (`easpiqcsltbtwouzrjft`), clé de type « publishable » (`sb_publishable_...`). Le ping avec le seul en-tête `apikey` est accepté par l'API (vérifié le 15/10/2026) | 15/10/2026 |
 | P17 | Page d'accueil : recherche par mots-clés (nom, description, rubrique, synonymes) et pastille verte « En ligne » sur les outils disponibles, à la demande du porteur. Revient partiellement sur P5 (« pas de recherche ») | 15/10/2026 |
+| P18 | Bibliothèques ajoutées (licence MIT, versions exactes, chargées seulement sur les pages concernées) : `qrcode` 1.5.4 (QR code), `pdf-lib` 1.17.1 (atelier PDF), `html-to-image` 1.11.13 (export en image). Choisies par Claude Code sur la consigne « lance tous les prochains », à confirmer à la vérification globale | 15/10/2026 |
+| P19 | 53 outils sans serveur construits d'un bloc à la demande du porteur, qui fera une vérification globale (au lieu d'« un outil terminé avant le suivant »). Chaque outil a été testé automatiquement dans un navigateur, mais aucun n'a encore été testé par 3 personnes réelles | 15/10/2026 |
+| P20 | Reportés : les 9 outils à mémoire serveur (schéma Supabase à valider, règle 7) et C31 suppression de fond (bibliothèque d'IA à évaluer, risque R3) | 15/10/2026 |
+| P21 | G4 « compression » de PDF : seule une réécriture compacte est possible dans le navigateur (gain modeste, images non recompressées). Dit clairement dans l'outil | 15/10/2026 |
 
 ## Décisions ouvertes
 
@@ -41,4 +45,4 @@
 | D9 | Charte graphique, logo, mode sombre | Charte minimale au départ, le reste après le nom définitif | Avant la phase 6 |
 | D10 | Nom définitif et domaine | Vérifier disponibilité (domaine, marque) puis choisir. En attendant, l'adresse en `.vercel.app` suffit | Avant la phase 6 |
 | D11 | Ajouter des ressources éditoriales (annuaire, comparatifs, blog) | Hors périmètre pour l'instant | Plus tard |
-| D19 | Contenus à écrire (B1 questions, B2 cases de bingo, B6 défis) : qui rédige, quel volume | Je peux rédiger une première série originale, relue par le porteur | Avant la phase 6 |
+| D19 | Contenus (B1 questions, B2 cases de bingo, B6 défis) | Première série originale rédigée par Claude Code le 15/10/2026 (50 questions, 30 cases, 19 défis) : à relire et compléter par le porteur | Avant la phase 6 |

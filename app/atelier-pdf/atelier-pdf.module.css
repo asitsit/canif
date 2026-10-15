@@ -1,0 +1,80 @@
+/* Atelier PDF. */
+
+.depot {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  place-items: center;
+  padding: 24px 16px;
+  text-align: center;
+  background: var(--surface);
+  border: 2px dashed var(--bordure);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.depot:hover {
+  border-color: var(--accent);
+}
+
+.depot:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.depot span {
+  font-size: 0.9rem;
+  color: var(--texte-discret);
+}
+
+.cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.liste {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.liste li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+}
+
+.liste button {
+  width: 30px;
+  height: 30px;
+  font: inherit;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.liste button:disabled {
+  opacity: 0.35;
+}
+
+.nom {
+  flex: 1;
+  display: grid;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.nom small {
+  font-weight: 400;
+  color: var(--texte-discret);
+}

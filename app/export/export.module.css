@@ -1,0 +1,47 @@
+/* Export en image ou PDF. */
+
+.liens {
+  columns: 3 200px;
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.liens li {
+  padding: 2px 0;
+}
+
+.page {
+  padding: 40px 36px;
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  line-height: 1.6;
+}
+
+.titre {
+  margin: 0 0 4px;
+  font-size: 1.8rem;
+  color: var(--texte);
+}
+
+.sousTitre {
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent);
+  color: var(--texte-discret);
+}
+
+.partie {
+  margin: 20px 0 6px;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+@media print {
+  .page {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}

@@ -37,11 +37,11 @@ export const rubriques: Rubrique[] = [
     titre: "Avant l'atelier",
     description: "Préparer, inviter, organiser la salle.",
     outils: [
-      { code: "A1", slug: "qr-code", nom: "Générateur de QR code", detail: "Couleur, logo, export PNG et SVG", motsCles: "flashcode lien code barre" },
+      { code: "A1", slug: "qr-code", nom: "Générateur de QR code", detail: "Couleur, logo, export PNG et SVG", motsCles: "flashcode lien code barre", pret: true },
       { code: "A2", slug: "checklist-technique", nom: "Checklist technique d'atelier", motsCles: "liste vérification matériel préparation", pret: true },
       { code: "A3", slug: "agenda", nom: "Générateur d'agenda", detail: "Étapes, durées, horaires calculés", motsCles: "programme déroulé ordre du jour planning horaires", pret: true },
       { code: "A4", slug: "tour-de-table", nom: "Durée d'un tour de table", motsCles: "présentation durée calcul", pret: true },
-      { code: "A5", slug: "plan-de-salle", nom: "Plan de salle", motsCles: "disposition tables chaises" },
+      { code: "A5", slug: "plan-de-salle", nom: "Plan de salle", motsCles: "disposition tables chaises", pret: true },
       { code: "A6", slug: "liste-materiel", nom: "Liste de matériel à emporter", motsCles: "fournitures checklist", pret: true },
       { code: "A7", slug: "invitation", nom: "Message d'invitation", motsCles: "email mail convocation", pret: true },
       { code: "A8", slug: "fond-visio", nom: "Fond de visio personnalisé", motsCles: "teams zoom meet arrière-plan", pret: true },
@@ -123,7 +123,7 @@ export const rubriques: Rubrique[] = [
     outils: [
       { code: "D1", slug: "compte-rendu", nom: "Modèle de compte rendu", motsCles: "cr synthèse réunion", pret: true },
       { code: "D4", slug: "synthese", nom: "Synthèse structurée", detail: "Règles simples, sans IA", motsCles: "résumé", pret: true },
-      { code: "D5", slug: "export", nom: "Export en image ou PDF", motsCles: "pdf image" },
+      { code: "D5", slug: "export", nom: "Export en image ou PDF", motsCles: "pdf image", pret: true },
       { code: "D6", slug: "remerciement", nom: "E-mail de remerciement", motsCles: "email mail merci", pret: true },
     ],
   },
@@ -166,7 +166,7 @@ export const rubriques: Rubrique[] = [
     description: "Petits outils du quotidien.",
     outils: [
       { code: "G1", slug: "compteur-mots", nom: "Compteur de mots et de caractères", motsCles: "caractères texte", pret: true },
-      { code: "G4", slug: "atelier-pdf", nom: "Atelier PDF", detail: "Fusion, compression", motsCles: "fusionner compresser" },
+      { code: "G4", slug: "atelier-pdf", nom: "Atelier PDF", detail: "Fusion, compression", motsCles: "fusionner compresser", pret: true },
       { code: "G5", slug: "extracteur-emails", nom: "Extracteur d'adresses e-mail", motsCles: "adresses mail", pret: true },
       { code: "G6", slug: "listes", nom: "Traitement de listes", detail: "Tri, doublons, majuscules", motsCles: "tri doublons", pret: true },
       { code: "G7", slug: "texte-de-test", nom: "Générateur de texte de test", motsCles: "lorem ipsum", pret: true },

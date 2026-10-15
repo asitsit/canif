@@ -1,0 +1,18 @@
+/* Générateur de QR code. */
+
+.couleur {
+  width: 64px !important;
+  min-width: 64px !important;
+  height: 42px;
+  padding: 2px !important;
+}
+
+.apercu {
+  display: block;
+  /* !important : la bibliothèque impose une largeur fixe en style direct */
+  width: min(100%, 360px) !important;
+  height: auto !important;
+  margin: 0 auto 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+}

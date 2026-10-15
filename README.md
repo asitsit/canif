@@ -4,7 +4,7 @@
 
 Boîte à outils web gratuite pour les facilitateurs, consultants, chefs de projet et entrepreneurs : 72 outils au total, dont le minuteur, la roue de noms, le jeu de cartes en lien unique, le buzzer, les mots croisés, des canevas et des calculateurs, sans compte pour les participants.
 
-**Statut : phase 0 faite.** Site Next.js en place (accueil, navigation, une page d'attente par outil, maintien en vie de Supabase). Aucun outil n'est encore construit.
+**Statut : 62 outils sur 72 en ligne** (tous les outils sans serveur). Restent les 9 outils en direct (buzzer, sondage, jeu de cartes...), qui demandent la base Supabase, et la suppression de fond. Voir `CLAUDE.md`.
 
 ## Contenu de ce dossier
 
@@ -30,7 +30,7 @@ Boîte à outils web gratuite pour les facilitateurs, consultants, chefs de proj
 1. `npm install` puis `npm run dev`, et ouvrir http://localhost:3000.
 2. Créer la table de maintien en vie dans Supabase (`docs/03-guide-demarrage.md`, étape 5).
 3. Déployer sur Vercel (`docs/03-guide-demarrage.md`, étape 8).
-4. Confirmer le choix du framework (décision P13 dans `docs/02-decisions.md`), puis lancer la phase 1.
+4. Relire les contenus rédigés pour Canif (questions, défis, bingo) et valider le schéma Supabase des outils en direct (phase 2).
 
 ## Règles à ne jamais oublier
 
