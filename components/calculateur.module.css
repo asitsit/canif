@@ -1,0 +1,70 @@
+/* Styles communs aux calculateurs (TJM, rentabilité, point mort...). */
+
+.grand {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.sousTitre {
+  margin: 0 0 16px;
+  color: var(--texte-discret);
+}
+
+.detail {
+  width: 100%;
+  margin: 12px 0;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail th,
+.detail td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.detail td:last-child,
+.detail th:last-child {
+  text-align: right;
+}
+
+.detail tr.total td,
+.detail tr.total th {
+  font-weight: 800;
+  border-bottom: none;
+}
+
+.detail tr.actif {
+  background: var(--accent-clair);
+}
+
+.verdict {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.bon {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.moyen {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.mauvais {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.titre {
+  margin: 20px 0 6px;
+  font-size: 1.05rem;
+}

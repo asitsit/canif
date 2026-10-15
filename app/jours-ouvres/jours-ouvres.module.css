@@ -1,0 +1,45 @@
+/* Jours ouvrés. */
+
+.chiffres {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 0 0 8px;
+}
+
+.chiffres div {
+  padding: 12px;
+  background: var(--fond);
+  border-radius: 10px;
+}
+
+.chiffres dt {
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.chiffres dd {
+  margin: 4px 0 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.principal {
+  background: var(--accent-clair) !important;
+}
+
+.principal dd {
+  color: var(--accent);
+}
+
+.titre {
+  margin: 16px 0 6px;
+  font-size: 1.05rem;
+}
+
+.date {
+  margin: 0 0 6px;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 800;
+  color: var(--accent);
+}

@@ -1,0 +1,39 @@
+/* Compteur de mots. */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0 0 12px;
+}
+
+.stats div {
+  padding: 12px;
+  background: var(--fond);
+  border-radius: 10px;
+}
+
+.stats dt {
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.stats dd {
+  margin: 4px 0 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.titre {
+  margin: 16px 0 8px;
+  font-size: 1.1rem;
+}
+
+.frequents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0 0 12px;
+  padding-left: 1.4em;
+}

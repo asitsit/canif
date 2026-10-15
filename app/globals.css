@@ -587,3 +587,50 @@ h2 {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Impression (et enregistrement en PDF) : on ne garde que le contenu utile */
+@media print {
+  .entete,
+  .pied,
+  .fil,
+  .reglages,
+  .commandes,
+  .pas-imprimer,
+  .bouton-quitter-plein-ecran {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 11pt;
+  }
+
+  .conteneur {
+    max-width: none;
+    padding: 0;
+  }
+
+  .mise-en-page-tirage {
+    display: block;
+  }
+
+  .resultat {
+    border: none;
+    padding: 0;
+  }
+
+  /* Garder les couleurs (post-its, barres) à l'impression */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Mention « à relire » pour les contenus rédigés par Canif */
+.note {
+  padding: 10px 14px;
+  border-left: 4px solid var(--direct);
+  background: var(--direct-clair);
+  border-radius: 8px;
+  font-size: 0.92rem;
+}

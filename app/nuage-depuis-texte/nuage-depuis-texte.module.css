@@ -1,0 +1,33 @@
+/* Nuage de mots depuis un texte. */
+
+.nuage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 16px;
+  min-height: 260px;
+  padding: 24px 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  font-size: clamp(0.8rem, 2.2vw, 1rem);
+  line-height: 1.1;
+}
+
+:global(.ecran-plein) .nuage {
+  font-size: min(2.2vh, 1.6vw);
+}
+
+.nuage span {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.details {
+  margin-top: 12px;
+}
+
+.details ol {
+  columns: 3 160px;
+  margin: 8px 0 0;
+}

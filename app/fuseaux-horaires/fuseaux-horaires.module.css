@@ -1,0 +1,89 @@
+/* Fuseaux horaires. */
+
+.lignes {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.lignes li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr) 2.4em;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--bordure);
+  border-left-width: 6px;
+  border-radius: 10px;
+}
+
+.nom {
+  display: grid;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.nom small,
+.jour small {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--texte-discret);
+}
+
+.heure {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.jour {
+  display: grid;
+  font-size: 0.9rem;
+}
+
+.reference {
+  background: var(--accent-clair);
+}
+
+.badgeRef {
+  font-size: 0.7rem;
+  color: var(--texte-discret);
+}
+
+.retirer {
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  color: var(--texte-discret);
+  cursor: pointer;
+}
+
+/* Couleur de bordure selon le moment de la journée */
+.bureau {
+  border-left-color: #16a34a !important;
+}
+
+.limite {
+  border-left-color: #f59e0b !important;
+}
+
+.nuit {
+  border-left-color: #64748b !important;
+}
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.legende span {
+  padding-left: 8px;
+  border-left: 6px solid;
+}

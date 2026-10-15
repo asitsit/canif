@@ -1,0 +1,217 @@
+/* Tableau à zones (post-its). */
+
+.outil {
+  display: grid;
+  gap: 16px;
+}
+
+.export {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  background: var(--fond);
+}
+
+.sujet input {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cadreAxes {
+  display: flex;
+  gap: 8px;
+}
+
+.grille {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .grille {
+    grid-template-columns: var(--zones-colonnes);
+    grid-template-areas: var(--zones-aires);
+  }
+}
+
+/* Sur téléphone, les zones s'empilent dans l'ordre du code */
+@media (max-width: 899px) {
+  .zone {
+    grid-area: auto !important;
+  }
+
+  .axeVertical,
+  .axeHorizontal {
+    display: none !important;
+  }
+}
+
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 140px;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+}
+
+.survol {
+  border-color: var(--accent);
+  background: var(--accent-clair);
+}
+
+.titreZone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.compte {
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--fond);
+  font-size: 0.8rem;
+  color: var(--texte-discret);
+}
+
+.aide {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.postIts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.postIt {
+  position: relative;
+  padding: 8px 10px;
+  background: var(--couleur-zone);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+}
+
+.texte {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  color: #1f2328;
+  background: none;
+  border: none;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  cursor: text;
+}
+
+.edition {
+  width: 100%;
+  min-height: 3em;
+  font: inherit;
+  font-size: 0.95rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+}
+
+.actions {
+  display: none;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.postIt:hover .actions,
+.postIt:focus-within .actions {
+  display: flex;
+}
+
+/* Sur écran tactile, pas de survol : actions toujours visibles */
+@media (hover: none) {
+  .actions {
+    display: flex;
+  }
+}
+
+.actions select {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.supprimer {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ajout {
+  display: flex;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.ajout input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.9rem;
+  border: 1px dashed var(--bordure);
+  border-radius: 6px;
+  background: transparent;
+}
+
+.ajout button {
+  width: 32px;
+  font-size: 1.1rem;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+/* Axes des matrices */
+.axeVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--texte-discret);
+}
+
+.axeHorizontal {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--texte-discret);
+}
