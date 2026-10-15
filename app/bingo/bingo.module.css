@@ -1,0 +1,75 @@
+/* Bingo d'atelier. */
+
+.grilles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
+  gap: 20px;
+}
+
+.page {
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+}
+
+.titre {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.grille {
+  display: grid;
+  border: 2px solid var(--texte);
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  aspect-ratio: 1;
+  padding: 6px;
+  border: 1px solid var(--texte);
+  font-size: clamp(0.62rem, 1.6vw, 0.85rem);
+  line-height: 1.25;
+  text-align: center;
+  overflow: hidden;
+}
+
+.libre {
+  justify-content: center;
+  background: var(--accent-clair);
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.signature {
+  font-size: 0.75em;
+  color: var(--texte-discret);
+}
+
+.consigne {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: var(--texte-discret);
+  text-align: center;
+}
+
+/* Impression : une grille par page, en grand */
+@media print {
+  .grilles {
+    display: block;
+  }
+
+  .page {
+    border: none;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .case {
+    font-size: 10pt;
+  }
+}

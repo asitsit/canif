@@ -1,0 +1,88 @@
+/* Tirage de cartes de texte. */
+
+.zone {
+  display: grid;
+  gap: 16px;
+}
+
+.carte {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  min-height: 220px;
+  padding: 24px;
+  background: var(--accent-clair);
+  border-radius: 16px;
+}
+
+.apparition {
+  animation: apparition 0.35s ease-out;
+}
+
+@keyframes apparition {
+  from {
+    transform: scale(0.95) rotate(-1deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apparition {
+    animation: none;
+  }
+}
+
+.etiquette {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.texte {
+  margin: 0;
+  font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.geant {
+  margin: 0;
+  font-size: clamp(5rem, 25vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.detail {
+  margin: 0;
+  color: var(--texte-discret);
+}
+
+.attente {
+  margin: 0;
+  color: var(--texte-discret);
+  font-size: 1.1rem;
+}
+
+:global(.ecran-plein) .carte {
+  min-height: 60vh;
+}
+
+:global(.ecran-plein) .texte {
+  font-size: min(7vh, 5vw);
+}
+
+:global(.ecran-plein) .geant {
+  font-size: min(45vh, 35vw);
+}
+
+.compteur {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}

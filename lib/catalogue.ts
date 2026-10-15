@@ -53,10 +53,10 @@ export const rubriques: Rubrique[] = [
     titre: "Briser la glace et jeux",
     description: "Lancer la dynamique du groupe.",
     outils: [
-      { code: "B1", slug: "brise-glace", nom: "Question brise-glace", detail: "Tirage par intention", motsCles: "icebreaker inclusion question" },
-      { code: "B2", slug: "bingo", nom: "Bingo d'atelier imprimable", motsCles: "jeu imprimable" },
-      { code: "B6", slug: "mini-defis", nom: "Mini-défis énergisants", motsCles: "énergiseur energizer jeu" },
-      { code: "B7", slug: "tirage-lettre", nom: "Tirage de lettre ou de thème", motsCles: "hasard aléatoire thème" },
+      { code: "B1", slug: "brise-glace", nom: "Question brise-glace", detail: "Tirage par intention", motsCles: "icebreaker inclusion question", pret: true },
+      { code: "B2", slug: "bingo", nom: "Bingo d'atelier imprimable", motsCles: "jeu imprimable", pret: true },
+      { code: "B6", slug: "mini-defis", nom: "Mini-défis énergisants", motsCles: "énergiseur energizer jeu", pret: true },
+      { code: "B7", slug: "tirage-lettre", nom: "Tirage de lettre ou de thème", motsCles: "hasard aléatoire thème", pret: true },
       {
         code: "B8",
         slug: "qui-est-qui",
@@ -66,7 +66,7 @@ export const rubriques: Rubrique[] = [
         memoire: true,
         stockage: "les pseudos et les faits saisis",
       },
-      { code: "B9", slug: "mots-croises", nom: "Mots croisés", detail: "Générateur de grille imprimable", motsCles: "grille jeu vocabulaire" },
+      { code: "B9", slug: "mots-croises", nom: "Mots croisés", detail: "Générateur de grille imprimable", motsCles: "grille jeu vocabulaire", pret: true },
     ],
   },
   {
