@@ -19,7 +19,7 @@
 | P10 | C14 : bouton « Prolonger de 7 jours » (modalités à confirmer : voir D16) | 15/10/2026 |
 | P11 | Contenus 100 % originaux, aucune reprise de « Le Bruit des Glaçons », des questions d'Augustin Trapenard ni d'un autre auteur | 15/10/2026 |
 | P12 | Maintien en vie de Supabase par ping régulier (au moins deux mécanismes) | 15/10/2026 |
-| P13 | D1 framework : **Next.js 16 (App Router) avec TypeScript**, CSS simple sans bibliothèque. Choisi par Claude Code sur la recommandation du cadrage, le porteur ayant demandé de se lancer. **À confirmer par le porteur** (revenir sur ce choix reste peu coûteux tant que les outils ne sont pas codés) | 15/10/2026 |
+| P13 | D1 framework : **Next.js 16 (App Router) avec TypeScript**, CSS simple sans bibliothèque. Choisi par Claude Code sur la recommandation du cadrage, le porteur ayant demandé de se lancer. **Confirmé par le porteur le 15/10/2026** | 15/10/2026 |
 | P14 | D12 navigation : par moment de l'atelier, appliquée en phase 0 (recommandation du cadrage, à confirmer) | 15/10/2026 |
 | P15 | Second mécanisme de maintien en vie : route `/api/keepalive` appelée chaque jour par Vercel Cron (`vercel.json`, 05:00 UTC), protégée par la variable `CRON_SECRET` | 15/10/2026 |
 | P16 | Projet Supabase créé (`easpiqcsltbtwouzrjft`), clé de type « publishable » (`sb_publishable_...`). Le ping avec le seul en-tête `apikey` est accepté par l'API (vérifié le 15/10/2026) | 15/10/2026 |

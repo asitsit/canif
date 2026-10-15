@@ -9,7 +9,7 @@ Canif (nom de travail) est un site public et gratuit regroupant 72 outils pour f
 ## État actuel
 
 - Phase 0 (fondations) : faite le 15/10/2026. Site Next.js avec mise en page, navigation par moment d'atelier, une page d'attente par outil, route de maintien en vie appelée par Vercel Cron. Reste à faire par le porteur : créer la table `keepalive` dans Supabase et brancher Vercel (voir `docs/03-guide-demarrage.md`).
-- Framework : Next.js 16 + TypeScript (décision P13, à confirmer par le porteur). Aucun outil n'est encore construit (phase 1 à venir).
+- Framework : Next.js 16 + TypeScript (décision P13, confirmée). Aucun outil n'est encore construit (phase 1 à venir).
 - Le périmètre fait foi dans `docs/01-catalogue.md` (codes A1 à G8). Ne pas ajouter d'outil sans accord.
 
 ## Décisions prises (ne pas remettre en cause sans demander)
