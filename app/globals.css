@@ -355,6 +355,32 @@ h2 {
     grid-template-columns: minmax(260px, 1fr) 2fr;
     align-items: start;
   }
+
+  /* Le résultat reste visible quand on fait défiler de longs réglages */
+  .mise-en-page-tirage > .resultat:not(.ecran-plein) {
+    position: sticky;
+    top: 16px;
+  }
+}
+
+.champ input[type="range"] {
+  width: 100%;
+  max-width: 22em;
+  padding: 0;
+  border: none;
+  background: none;
+  accent-color: var(--accent);
+}
+
+/* Badge de mention (par exemple « 100 % aléatoire ») */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--direct-clair);
+  color: var(--direct);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .champ input[type="number"] {

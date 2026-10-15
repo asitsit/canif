@@ -40,6 +40,71 @@
   color: var(--texte-discret);
 }
 
-.alerte {
+.nonAttribues {
   color: var(--rouge);
+}
+
+/* Alerte « plus de rôles que de personnes » */
+.alerte {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid #f5c2a8;
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent-clair);
+}
+
+/* Cadres de rôles connus */
+.cadres {
+  display: grid;
+  gap: 10px;
+}
+
+.panneau {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+}
+
+.panneau p {
+  margin: 0;
+}
+
+.puces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.puce {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.92rem;
+  text-align: left;
+  color: var(--texte);
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.puce:hover {
+  border-color: var(--accent);
+}
+
+.pucePresente {
+  color: var(--direct);
+  background: var(--direct-clair);
+  border-color: var(--direct);
+  font-weight: 600;
+}
+
+.actionsCadre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
 }

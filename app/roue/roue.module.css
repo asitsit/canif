@@ -49,6 +49,125 @@
   overflow-wrap: anywhere;
 }
 
+/* Ordre des choix */
+.choix {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bordure);
+}
+
+.titreChoix {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.listeChoix {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.listeChoix li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 4px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.85em;
+}
+
+/* Choix des couleurs */
+.palettes {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.palettes legend {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.palette {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.palette input {
+  width: 18px;
+  height: 18px;
+}
+
+.nuancier {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+}
+
+.nuancier span {
+  width: 16px;
+  height: 20px;
+}
+
+.perso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-left: 28px;
+}
+
+.persoCouleur {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.persoCouleur input {
+  width: 44px;
+  height: 36px;
+  padding: 2px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.retirer {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font: inherit;
+  line-height: 1;
+  color: var(--texte-discret);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 :global(.ecran-plein) .gagnant {
   font-size: min(9vh, 10vw);
   margin: 8px 0;

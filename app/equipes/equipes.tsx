@@ -78,6 +78,12 @@ export default function Equipes() {
 
         {apercu && <p className="discret">{apercu}.</p>}
 
+        <p className="discret">
+          <span className="badge">100 % aléatoire</span> Chaque personne a exactement la même chance de se retrouver
+          dans chaque équipe : ni l'ordre de la liste ni les noms n'influencent le tirage. Le hasard vient du
+          générateur sécurisé du navigateur.
+        </p>
+
         <div>
           <button className="bouton bouton-principal" onClick={former} disabled={nbEquipes === 0}>
             {equipes.length ? "Refaire les équipes" : "Former les équipes"}
@@ -89,6 +95,11 @@ export default function Equipes() {
         {equipes.length === 0 ? (
           <p className="discret">Saisissez les noms, choisissez le nombre d'équipes puis cliquez sur « Former les équipes ».</p>
         ) : (
+          <p className={styles.mention}>
+            <span className="badge">Répartition 100 % aléatoire</span>
+          </p>
+        )}
+        {equipes.length > 0 && (
           <div className={styles.grille} aria-live="polite">
             {equipes.map((membres, i) => (
               <section key={i} className={styles.equipe} style={{ borderTopColor: `var(--equipe-${i % 8})` }}>

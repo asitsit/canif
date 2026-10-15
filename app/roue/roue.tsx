@@ -11,11 +11,18 @@ import ChampNoms, { useListeNoms } from "@/components/liste-noms";
 import { usePleinEcran, useRaccourcis } from "@/lib/hooks";
 import { entierAleatoire } from "@/lib/hasard";
 import { biper, preparerSon } from "@/lib/son";
+import { couleurPart, couleurTexte, PALETTES, PERSO_DEPART } from "./couleurs";
 import styles from "./roue.module.css";
 
-// Durée de rotation, en millisecondes (plus courte si l'on a demandé moins d'animations).
-const DUREE_ROTATION = 4500;
-const DUREE_ROTATION_REDUITE = 600;
+// Durée de rotation : réglable de 1 à 20 secondes. Si le système demande
+// moins d'animations, elle est limitée à 0,6 seconde.
+const DUREE_DEFAUT_S = 4.5;
+const DUREE_REDUITE_MS = 600;
+
+// Réglages gardés dans le navigateur.
+const CLE_STOCKAGE = "canif.roue.reglages";
+type Reglages = { palette: string; perso: string[]; dureeS: number };
+const REGLAGES_DEFAUT: Reglages = { palette: "canif", perso: PERSO_DEPART, dureeS: DUREE_DEFAUT_S };
 
 // Dimensions du dessin (unités SVG).
 const TAILLE = 400;
@@ -36,18 +43,13 @@ function tracePart(debut: number, fin: number) {
   return `M ${CENTRE} ${CENTRE} L ${a.x} ${a.y} A ${RAYON} ${RAYON} 0 ${grandArc} 1 ${b.x} ${b.y} Z`;
 }
 
-// Couleur d'une part (évite deux parts voisines de même couleur entre la dernière et la première).
-function couleur(index: number, total: number) {
-  let n = index % 8;
-  if (index === total - 1 && total > 1 && n === 0) n = 1;
-  return `var(--equipe-${n})`;
-}
-
 export default function Roue() {
   const liste = useListeNoms();
   const [retirerTire, setRetirerTire] = useState(false);
   const [sonActif, setSonActif] = useState(true);
+  const [reglages, setReglages] = useState<Reglages>(REGLAGES_DEFAUT);
   const [exclus, setExclus] = useState<number[]>([]); // positions des noms retirés de la roue
+  const [choix, setChoix] = useState<number[]>([]); // ordre des noms tirés (positions dans la liste)
   const [rotation, setRotation] = useState(0); // angle total de la roue, en degrés
   const [enRotation, setEnRotation] = useState(false);
   const [gagnant, setGagnant] = useState<number | null>(null); // position du nom tiré dans la liste
@@ -57,21 +59,53 @@ export default function Roue() {
 
   const pleinEcran = usePleinEcran<HTMLDivElement>();
 
+  // --- Réglages : lecture et enregistrement dans le navigateur ---
+
+  useEffect(() => {
+    setMouvementReduit(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    try {
+      const sauvegarde = localStorage.getItem(CLE_STOCKAGE);
+      if (sauvegarde) setReglages({ ...REGLAGES_DEFAUT, ...JSON.parse(sauvegarde) });
+    } catch {
+      // réglages illisibles ou stockage indisponible : réglages par défaut
+    }
+  }, []);
+
+  function modifierReglages(modif: Partial<Reglages>) {
+    const nouveaux = { ...reglages, ...modif };
+    setReglages(nouveaux);
+    try {
+      localStorage.setItem(CLE_STOCKAGE, JSON.stringify(nouveaux));
+    } catch {
+      // sans gravité
+    }
+  }
+
+  function modifierCouleurPerso(index: number, valeur: string) {
+    modifierReglages({ perso: reglages.perso.map((c, i) => (i === index ? valeur : c)) });
+  }
+
   // Si la liste change, on repart d'une roue complète.
   useEffect(() => {
     setExclus([]);
+    setChoix([]);
     setGagnant(null);
     setARetirer(null);
   }, [liste.texte]);
 
-  useEffect(() => {
-    setMouvementReduit(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
+  // --- Calculs ---
+
+  const couleurs =
+    reglages.palette === "perso"
+      ? reglages.perso
+      : (PALETTES[reglages.palette] ?? PALETTES.canif).couleurs;
 
   // Positions (dans la liste) des noms présents sur la roue.
   const presents = liste.noms.map((_, i) => i).filter((i) => !exclus.includes(i));
   const angle = presents.length > 0 ? 360 / presents.length : 360;
-  const duree = mouvementReduit ? DUREE_ROTATION_REDUITE : DUREE_ROTATION;
+  const duree = mouvementReduit ? DUREE_REDUITE_MS : reglages.dureeS * 1000;
+
+  // --- Commandes ---
 
   function tourner() {
     if (enRotation) return;
@@ -91,18 +125,21 @@ export default function Roue() {
     const part = entierAleatoire(surLaRoue.length);
     const anglePart = 360 / surLaRoue.length;
 
-    // 2. Angle final : plusieurs tours complets, puis arrêt au milieu de la part
-    //    gagnante (avec un léger décalage aléatoire pour paraître naturel).
+    // 2. Angle final : plusieurs tours complets (plus si l'animation est longue),
+    //    puis arrêt au milieu de la part gagnante, avec un léger décalage aléatoire.
     const decalage = ((entierAleatoire(61) - 30) / 100) * anglePart; // entre -30 % et +30 % de la part
     const arret = 360 - (part + 0.5) * anglePart + decalage;
-    const toursComplets = Math.ceil(rotation / 360) * 360 + 5 * 360;
+    const nombreTours = Math.max(3, Math.round(duree / 900));
+    const toursComplets = Math.ceil(rotation / 360) * 360 + nombreTours * 360;
     setRotation(toursComplets + arret);
 
+    const retirer = retirerTire;
     setGagnant(null);
     setEnRotation(true);
     setTimeout(() => {
       setGagnant(surLaRoue[part]);
-      if (retirerTire) setARetirer(surLaRoue[part]);
+      setChoix((c) => [...c, surLaRoue[part]]);
+      if (retirer) setARetirer(surLaRoue[part]);
       setEnRotation(false);
     }, duree);
   }
@@ -112,8 +149,10 @@ export default function Roue() {
     if (gagnant !== null && sonActif) biper(1, 990);
   }, [gagnant, sonActif]);
 
-  function remettreTousLesNoms() {
+  // Remet tous les noms sur la roue et efface l'ordre des choix.
+  function recommencer() {
     setExclus([]);
+    setChoix([]);
     setGagnant(null);
     setARetirer(null);
   }
@@ -135,14 +174,91 @@ export default function Roue() {
           <input type="checkbox" checked={sonActif} onChange={(e) => setSonActif(e.target.checked)} />
           Signal sonore à l'arrêt
         </label>
-        {exclus.length > 0 && (
+
+        <label className="champ">
+          Durée de l'animation : {reglages.dureeS.toLocaleString("fr-FR")} s
+          <input
+            type="range"
+            min={1}
+            max={20}
+            step={0.5}
+            value={reglages.dureeS}
+            onChange={(e) => modifierReglages({ dureeS: Number(e.target.value) })}
+          />
+        </label>
+        {mouvementReduit && (
           <p className="discret">
-            Déjà tirés : {exclus.map((i) => liste.noms[i]).join(", ")}.{" "}
-            <button type="button" className="lien-bouton" onClick={remettreTousLesNoms}>
-              Remettre tous les noms
-            </button>
+            Votre appareil demande de réduire les animations : la roue s'arrête en moins d'une seconde.
           </p>
         )}
+
+        <fieldset className={styles.palettes}>
+          <legend>Couleurs</legend>
+          {Object.entries(PALETTES).map(([id, palette]) => (
+            <label key={id} className={styles.palette}>
+              <input
+                type="radio"
+                name="palette"
+                checked={reglages.palette === id}
+                onChange={() => modifierReglages({ palette: id })}
+              />
+              <span className={styles.nuancier} aria-hidden="true">
+                {palette.couleurs.map((c, i) => (
+                  <span key={i} style={{ background: c }} />
+                ))}
+              </span>
+              {palette.nom}
+            </label>
+          ))}
+          <label className={styles.palette}>
+            <input
+              type="radio"
+              name="palette"
+              checked={reglages.palette === "perso"}
+              onChange={() => modifierReglages({ palette: "perso" })}
+            />
+            <span className={styles.nuancier} aria-hidden="true">
+              {reglages.perso.map((c, i) => (
+                <span key={i} style={{ background: c }} />
+              ))}
+            </span>
+            Personnalisée
+          </label>
+
+          {reglages.palette === "perso" && (
+            <div className={styles.perso}>
+              {reglages.perso.map((c, i) => (
+                <span key={i} className={styles.persoCouleur}>
+                  <input
+                    type="color"
+                    value={c}
+                    onChange={(e) => modifierCouleurPerso(i, e.target.value)}
+                    aria-label={`Couleur ${i + 1}`}
+                  />
+                  {reglages.perso.length > 2 && (
+                    <button
+                      type="button"
+                      className={styles.retirer}
+                      onClick={() => modifierReglages({ perso: reglages.perso.filter((_, j) => j !== i) })}
+                      aria-label={`Retirer la couleur ${i + 1}`}
+                    >
+                      ×
+                    </button>
+                  )}
+                </span>
+              ))}
+              {reglages.perso.length < 8 && (
+                <button
+                  type="button"
+                  className="lien-bouton"
+                  onClick={() => modifierReglages({ perso: [...reglages.perso, "#64748b"] })}
+                >
+                  Ajouter une couleur
+                </button>
+              )}
+            </div>
+          )}
+        </fieldset>
       </section>
 
       <div ref={pleinEcran.ref} className={`resultat ${styles.zone} ${pleinEcran.actif ? "ecran-plein" : ""}`}>
@@ -161,19 +277,20 @@ export default function Roue() {
               }}
             >
               <svg viewBox={`0 0 ${TAILLE} ${TAILLE}`} role="img" aria-label={`Roue de ${presents.length} noms`}>
-                {presents.length === 1 ? (
-                  <circle cx={CENTRE} cy={CENTRE} r={RAYON} fill={couleur(0, 1)} />
-                ) : (
-                  presents.map((position, i) => (
+                {presents.map((position, i) => {
+                  const fond = couleurPart(couleurs, i, presents.length);
+                  return presents.length === 1 ? (
+                    <circle key={position} cx={CENTRE} cy={CENTRE} r={RAYON} fill={fond} />
+                  ) : (
                     <path
                       key={position}
                       d={tracePart(i * angle, (i + 1) * angle)}
-                      fill={couleur(i, presents.length)}
+                      fill={fond}
                       stroke="#ffffff"
                       strokeWidth={2}
                     />
-                  ))
-                )}
+                  );
+                })}
                 {presents.map((position, i) => {
                   const milieu = (i + 0.5) * angle;
                   const nom = liste.noms[position];
@@ -187,7 +304,7 @@ export default function Roue() {
                       transform={`rotate(${milieu - 90} ${CENTRE} ${CENTRE})`}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill="#ffffff"
+                      fill={couleurTexte(couleurPart(couleurs, i, presents.length))}
                       fontSize={tailleTexte}
                       fontWeight={700}
                     >
@@ -215,6 +332,23 @@ export default function Roue() {
             </button>
           )}
         </div>
+
+        {choix.length > 0 && (
+          <div className={styles.choix}>
+            <h2 className={styles.titreChoix}>Ordre des choix</h2>
+            <ol className={styles.listeChoix}>
+              {choix.map((position, i) => (
+                <li key={i}>
+                  <span className={styles.numero}>{i + 1}</span>
+                  {liste.noms[position]}
+                </li>
+              ))}
+            </ol>
+            <button type="button" className="lien-bouton" onClick={recommencer}>
+              {exclus.length > 0 ? "Recommencer avec tous les noms" : "Effacer l'ordre des choix"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

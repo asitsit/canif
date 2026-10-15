@@ -14,6 +14,10 @@
   color: var(--texte-discret);
 }
 
+.mention {
+  margin: 0 0 12px;
+}
+
 .grille {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
