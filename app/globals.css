@@ -187,8 +187,47 @@ h2 {
 }
 
 .etiquette-direct {
-  background: var(--direct-clair);
-  color: var(--direct);
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+/* Pastille verte « En ligne » */
+.etiquette-en-ligne {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+.pastille {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+
+.carte-en-ligne {
+  border-color: #86efac;
+}
+
+/* Recherche de la page d'accueil */
+.recherche {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.recherche input[type="search"] {
+  width: 100%;
+  max-width: 34em;
+  padding: 12px 14px;
+  font-size: 1.05rem;
+}
+
+.recherche .discret {
+  margin: 0;
 }
 
 /* Page d'un outil */

@@ -23,6 +23,7 @@
 | P14 | D12 navigation : par moment de l'atelier, appliquée en phase 0 (recommandation du cadrage, à confirmer) | 15/10/2026 |
 | P15 | Second mécanisme de maintien en vie : route `/api/keepalive` appelée chaque jour par Vercel Cron (`vercel.json`, 05:00 UTC), protégée par la variable `CRON_SECRET` | 15/10/2026 |
 | P16 | Projet Supabase créé (`easpiqcsltbtwouzrjft`), clé de type « publishable » (`sb_publishable_...`). Le ping avec le seul en-tête `apikey` est accepté par l'API (vérifié le 15/10/2026) | 15/10/2026 |
+| P17 | Page d'accueil : recherche par mots-clés (nom, description, rubrique, synonymes) et pastille verte « En ligne » sur les outils disponibles, à la demande du porteur. Revient partiellement sur P5 (« pas de recherche ») | 15/10/2026 |
 
 ## Décisions ouvertes
 

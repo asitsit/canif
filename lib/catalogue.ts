@@ -9,7 +9,8 @@
 //  - detail    : une précision facultative
 //  - memoire   : true si l'outil garde des données sur le serveur (Supabase)
 //  - stockage  : pour les outils à mémoire, ce qui est enregistré
-//  - pret      : true quand l'outil est construit et utilisable
+//  - pret      : true quand l'outil est construit et utilisable (pastille « En ligne »)
+//  - motsCles  : synonymes utilisés par la recherche (« timer » trouve le minuteur)
 
 export type Outil = {
   code: string;
@@ -19,6 +20,7 @@ export type Outil = {
   memoire?: boolean;
   stockage?: string;
   pret?: boolean;
+  motsCles?: string;
 };
 
 export type Rubrique = {
@@ -35,15 +37,15 @@ export const rubriques: Rubrique[] = [
     titre: "Avant l'atelier",
     description: "Préparer, inviter, organiser la salle.",
     outils: [
-      { code: "A1", slug: "qr-code", nom: "Générateur de QR code", detail: "Couleur, logo, export PNG et SVG" },
-      { code: "A2", slug: "checklist-technique", nom: "Checklist technique d'atelier" },
-      { code: "A3", slug: "agenda", nom: "Générateur d'agenda", detail: "Étapes, durées, horaires calculés" },
-      { code: "A4", slug: "tour-de-table", nom: "Durée d'un tour de table" },
-      { code: "A5", slug: "plan-de-salle", nom: "Plan de salle" },
-      { code: "A6", slug: "liste-materiel", nom: "Liste de matériel à emporter" },
-      { code: "A7", slug: "invitation", nom: "Message d'invitation" },
-      { code: "A8", slug: "fond-visio", nom: "Fond de visio personnalisé" },
-      { code: "A9", slug: "fuseaux-horaires", nom: "Convertisseur de fuseaux horaires" },
+      { code: "A1", slug: "qr-code", nom: "Générateur de QR code", detail: "Couleur, logo, export PNG et SVG", motsCles: "flashcode lien code barre" },
+      { code: "A2", slug: "checklist-technique", nom: "Checklist technique d'atelier", motsCles: "liste vérification matériel préparation" },
+      { code: "A3", slug: "agenda", nom: "Générateur d'agenda", detail: "Étapes, durées, horaires calculés", motsCles: "programme déroulé ordre du jour planning horaires" },
+      { code: "A4", slug: "tour-de-table", nom: "Durée d'un tour de table", motsCles: "présentation durée calcul" },
+      { code: "A5", slug: "plan-de-salle", nom: "Plan de salle", motsCles: "disposition tables chaises" },
+      { code: "A6", slug: "liste-materiel", nom: "Liste de matériel à emporter", motsCles: "fournitures checklist" },
+      { code: "A7", slug: "invitation", nom: "Message d'invitation", motsCles: "email mail convocation" },
+      { code: "A8", slug: "fond-visio", nom: "Fond de visio personnalisé", motsCles: "teams zoom meet arrière-plan" },
+      { code: "A9", slug: "fuseaux-horaires", nom: "Convertisseur de fuseaux horaires", motsCles: "heure international décalage" },
     ],
   },
   {
@@ -51,19 +53,20 @@ export const rubriques: Rubrique[] = [
     titre: "Briser la glace et jeux",
     description: "Lancer la dynamique du groupe.",
     outils: [
-      { code: "B1", slug: "brise-glace", nom: "Question brise-glace", detail: "Tirage par intention" },
-      { code: "B2", slug: "bingo", nom: "Bingo d'atelier imprimable" },
-      { code: "B6", slug: "mini-defis", nom: "Mini-défis énergisants" },
-      { code: "B7", slug: "tirage-lettre", nom: "Tirage de lettre ou de thème" },
+      { code: "B1", slug: "brise-glace", nom: "Question brise-glace", detail: "Tirage par intention", motsCles: "icebreaker inclusion question" },
+      { code: "B2", slug: "bingo", nom: "Bingo d'atelier imprimable", motsCles: "jeu imprimable" },
+      { code: "B6", slug: "mini-defis", nom: "Mini-défis énergisants", motsCles: "énergiseur energizer jeu" },
+      { code: "B7", slug: "tirage-lettre", nom: "Tirage de lettre ou de thème", motsCles: "hasard aléatoire thème" },
       {
         code: "B8",
         slug: "qui-est-qui",
+        motsCles: "jeu devinette connaissance",
         nom: "Qui est qui ?",
         detail: "Chacun renseigne 3 faits, le groupe devine",
         memoire: true,
         stockage: "les pseudos et les faits saisis",
       },
-      { code: "B9", slug: "mots-croises", nom: "Mots croisés", detail: "Générateur de grille imprimable" },
+      { code: "B9", slug: "mots-croises", nom: "Mots croisés", detail: "Générateur de grille imprimable", motsCles: "grille jeu vocabulaire" },
     ],
   },
   {
@@ -72,44 +75,45 @@ export const rubriques: Rubrique[] = [
     description: "Temps, groupes, interaction en direct, création visuelle.",
     outils: [
       // Temps et rythme
-      { code: "C1", slug: "minuteur", nom: "Minuteur", detail: "Compte à rebours", pret: true },
-      { code: "C2", slug: "minuteur-etapes", nom: "Minuteur d'étapes enchaînées" },
-      { code: "C3", slug: "chrono-parole", nom: "Chronomètre de parole", detail: "Temps par intervenant, avance ou retard", pret: true },
-      { code: "C4", slug: "pause", nom: "Écran de pause projetable", pret: true },
-      { code: "C5", slug: "pomodoro", nom: "Pomodoro", pret: true },
-      { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes" },
+      { code: "C1", slug: "minuteur", nom: "Minuteur", detail: "Compte à rebours", pret: true, motsCles: "timer compte à rebours chrono temps" },
+      { code: "C2", slug: "minuteur-etapes", nom: "Minuteur d'étapes enchaînées", motsCles: "timer séquence enchaînement temps" },
+      { code: "C3", slug: "chrono-parole", nom: "Chronomètre de parole", detail: "Temps par intervenant, avance ou retard", pret: true, motsCles: "timer temps de parole intervenants orateurs avance retard" },
+      { code: "C4", slug: "pause", nom: "Écran de pause projetable", pret: true, motsCles: "café break reprise" },
+      { code: "C5", slug: "pomodoro", nom: "Pomodoro", pret: true, motsCles: "timer concentration focus travail" },
+      { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes", motsCles: "sous-groupes timer plusieurs" },
       // Groupes et tirage
-      { code: "C8", slug: "roue", nom: "Roue de noms", pret: true },
-      { code: "C9", slug: "equipes", nom: "Générateur d'équipes", pret: true },
-      { code: "C10", slug: "equipes-parametres", nom: "Équipes avec paramètres", detail: "Service, niveau, site" },
-      { code: "C11", slug: "ordre-de-passage", nom: "Ordre de passage", pret: true },
-      { code: "C12", slug: "des", nom: "Dés personnalisables" },
-      { code: "C13", slug: "pile-ou-face", nom: "Pile ou face", pret: true },
+      { code: "C8", slug: "roue", nom: "Roue de noms", pret: true, motsCles: "hasard aléatoire tirage au sort spinner" },
+      { code: "C9", slug: "equipes", nom: "Générateur d'équipes", pret: true, motsCles: "groupes hasard aléatoire répartition" },
+      { code: "C10", slug: "equipes-parametres", nom: "Équipes avec paramètres", detail: "Service, niveau, site", motsCles: "groupes critères mixité" },
+      { code: "C11", slug: "ordre-de-passage", nom: "Ordre de passage", pret: true, motsCles: "hasard aléatoire tirage au sort ordre" },
+      { code: "C12", slug: "des", nom: "Dés personnalisables", motsCles: "dé hasard aléatoire jeu" },
+      { code: "C13", slug: "pile-ou-face", nom: "Pile ou face", pret: true, motsCles: "pièce hasard aléatoire" },
       {
         code: "C14",
         slug: "jeu-de-cartes",
+        motsCles: "cartes pioche photolangage",
         nom: "Jeu de cartes en lien unique",
         detail: "40 cartes maximum, conservé 7 jours",
         memoire: true,
         stockage: "le paquet de cartes et ses images",
       },
-      { code: "C15", slug: "tirage-roles", nom: "Tirage de rôles", pret: true },
+      { code: "C15", slug: "tirage-roles", nom: "Tirage de rôles", pret: true, motsCles: "hasard aléatoire rôles chapeaux bono belbin" },
       // Interaction en direct
-      { code: "C16", slug: "buzzer", nom: "Buzzer", memoire: true, stockage: "les pseudos et l'heure d'arrivée de chaque buzz" },
-      { code: "C17", slug: "sondage", nom: "Sondage express", memoire: true, stockage: "la question et les votes" },
-      { code: "C18", slug: "vote-a-points", nom: "Vote à points", memoire: true, stockage: "les options et les votes" },
-      { code: "C19", slug: "nuage-de-mots", nom: "Nuage de mots en direct", memoire: true, stockage: "les mots saisis" },
-      { code: "C20", slug: "nuage-depuis-texte", nom: "Nuage de mots depuis un texte" },
-      { code: "C21", slug: "questions-anonymes", nom: "Questions anonymes", memoire: true, stockage: "les questions et les votes" },
-      { code: "C25", slug: "echelle", nom: "Échelle de position", detail: "Curseur de 0 à 10", memoire: true, stockage: "les valeurs saisies" },
-      { code: "C27", slug: "oui-non", nom: "Vote oui / non", memoire: true, stockage: "les votes" },
+      { code: "C16", slug: "buzzer", nom: "Buzzer", memoire: true, stockage: "les pseudos et l'heure d'arrivée de chaque buzz", motsCles: "jeu quiz rapidité" },
+      { code: "C17", slug: "sondage", nom: "Sondage express", memoire: true, stockage: "la question et les votes", motsCles: "vote question réponse" },
+      { code: "C18", slug: "vote-a-points", nom: "Vote à points", memoire: true, stockage: "les options et les votes", motsCles: "priorisation dot voting gommettes" },
+      { code: "C19", slug: "nuage-de-mots", nom: "Nuage de mots en direct", memoire: true, stockage: "les mots saisis", motsCles: "word cloud mots" },
+      { code: "C20", slug: "nuage-depuis-texte", nom: "Nuage de mots depuis un texte", motsCles: "word cloud fréquence" },
+      { code: "C21", slug: "questions-anonymes", nom: "Questions anonymes", memoire: true, stockage: "les questions et les votes", motsCles: "q&a questions réponses" },
+      { code: "C25", slug: "echelle", nom: "Échelle de position", detail: "Curseur de 0 à 10", memoire: true, stockage: "les valeurs saisies", motsCles: "curseur position note" },
+      { code: "C27", slug: "oui-non", nom: "Vote oui / non", memoire: true, stockage: "les votes", motsCles: "vote accord" },
       // Création visuelle
-      { code: "C28", slug: "dessin", nom: "Page blanche de dessin" },
-      { code: "C29", slug: "tableau-blanc", nom: "Tableau blanc simple", detail: "Formes, texte, flèches" },
-      { code: "C31", slug: "suppression-fond", nom: "Suppression de fond", detail: "Dans le navigateur" },
-      { code: "C32", slug: "compresseur-images", nom: "Compresseur et redimensionneur d'images" },
-      { code: "C33", slug: "palette", nom: "Palette de couleurs" },
-      { code: "C34", slug: "convertisseur-images", nom: "Convertisseur d'images", detail: "PNG, JPG, WebP" },
+      { code: "C28", slug: "dessin", nom: "Page blanche de dessin", motsCles: "croquis paint" },
+      { code: "C29", slug: "tableau-blanc", nom: "Tableau blanc simple", detail: "Formes, texte, flèches", motsCles: "whiteboard schéma" },
+      { code: "C31", slug: "suppression-fond", nom: "Suppression de fond", detail: "Dans le navigateur", motsCles: "détourage photo image" },
+      { code: "C32", slug: "compresseur-images", nom: "Compresseur et redimensionneur d'images", motsCles: "réduire poids photo" },
+      { code: "C33", slug: "palette", nom: "Palette de couleurs", motsCles: "couleurs charte" },
+      { code: "C34", slug: "convertisseur-images", nom: "Convertisseur d'images", detail: "PNG, JPG, WebP", motsCles: "format photo jpg png webp" },
     ],
   },
   {
@@ -117,10 +121,10 @@ export const rubriques: Rubrique[] = [
     titre: "Après l'atelier",
     description: "Restituer et remercier.",
     outils: [
-      { code: "D1", slug: "compte-rendu", nom: "Modèle de compte rendu" },
-      { code: "D4", slug: "synthese", nom: "Synthèse structurée", detail: "Règles simples, sans IA" },
-      { code: "D5", slug: "export", nom: "Export en image ou PDF" },
-      { code: "D6", slug: "remerciement", nom: "E-mail de remerciement" },
+      { code: "D1", slug: "compte-rendu", nom: "Modèle de compte rendu", motsCles: "cr synthèse réunion" },
+      { code: "D4", slug: "synthese", nom: "Synthèse structurée", detail: "Règles simples, sans IA", motsCles: "résumé" },
+      { code: "D5", slug: "export", nom: "Export en image ou PDF", motsCles: "pdf image" },
+      { code: "D6", slug: "remerciement", nom: "E-mail de remerciement", motsCles: "email mail merci" },
     ],
   },
   {
@@ -128,19 +132,19 @@ export const rubriques: Rubrique[] = [
     titre: "Consultant et chef de projet",
     description: "Prioriser, décider, planifier.",
     outils: [
-      { code: "E1", slug: "eisenhower", nom: "Matrice d'Eisenhower" },
-      { code: "E2", slug: "impact-effort", nom: "Matrice impact / effort" },
-      { code: "E3", slug: "canevas", nom: "Canevas", detail: "SWOT, persona, carte d'empathie, Business Model Canvas" },
-      { code: "E4", slug: "decision-ponderee", nom: "Matrice de décision pondérée" },
-      { code: "E5", slug: "selection-mission", nom: "Matrice de sélection de mission" },
-      { code: "E6", slug: "raci", nom: "RACI" },
-      { code: "E7", slug: "parties-prenantes", nom: "Cartographie des parties prenantes" },
-      { code: "E8", slug: "cinq-pourquoi", nom: "Arbre des 5 pourquoi" },
-      { code: "E9", slug: "ishikawa", nom: "Diagramme d'Ishikawa" },
-      { code: "E10", slug: "retrospective", nom: "Rétrospective", detail: "Commencer, arrêter, continuer" },
-      { code: "E11", slug: "roadmap", nom: "Roadmap simple" },
-      { code: "E12", slug: "gantt", nom: "Gantt simple" },
-      { code: "E13", slug: "retro-planning", nom: "Rétro-planning" },
+      { code: "E1", slug: "eisenhower", nom: "Matrice d'Eisenhower", motsCles: "priorisation urgent important" },
+      { code: "E2", slug: "impact-effort", nom: "Matrice impact / effort", motsCles: "priorisation matrice" },
+      { code: "E3", slug: "canevas", nom: "Canevas", detail: "SWOT, persona, carte d'empathie, Business Model Canvas", motsCles: "swot persona empathie business model canvas" },
+      { code: "E4", slug: "decision-ponderee", nom: "Matrice de décision pondérée", motsCles: "critères choix" },
+      { code: "E5", slug: "selection-mission", nom: "Matrice de sélection de mission", motsCles: "choix client" },
+      { code: "E6", slug: "raci", nom: "RACI", motsCles: "responsabilités rôles" },
+      { code: "E7", slug: "parties-prenantes", nom: "Cartographie des parties prenantes", motsCles: "stakeholders acteurs" },
+      { code: "E8", slug: "cinq-pourquoi", nom: "Arbre des 5 pourquoi", motsCles: "5 pourquoi cause racine" },
+      { code: "E9", slug: "ishikawa", nom: "Diagramme d'Ishikawa", motsCles: "arête de poisson causes" },
+      { code: "E10", slug: "retrospective", nom: "Rétrospective", detail: "Commencer, arrêter, continuer", motsCles: "rétro agile commencer arrêter continuer" },
+      { code: "E11", slug: "roadmap", nom: "Roadmap simple", motsCles: "feuille de route" },
+      { code: "E12", slug: "gantt", nom: "Gantt simple", motsCles: "planning projet" },
+      { code: "E13", slug: "retro-planning", nom: "Rétro-planning", motsCles: "planning échéances" },
     ],
   },
   {
@@ -148,12 +152,12 @@ export const rubriques: Rubrique[] = [
     titre: "Entrepreneur",
     description: "Chiffrer et présenter son activité.",
     outils: [
-      { code: "F1", slug: "tjm", nom: "Calculateur de TJM" },
-      { code: "F2", slug: "rentabilite-mission", nom: "Rentabilité de mission" },
-      { code: "F3", slug: "simulateur-prix", nom: "Simulateur de prix", detail: "Forfait ou régie" },
-      { code: "F5", slug: "pitch", nom: "Canevas de pitch de 2 minutes" },
-      { code: "F8", slug: "point-mort", nom: "Calcul du point mort" },
-      { code: "F10", slug: "signature-email", nom: "Signature d'e-mail" },
+      { code: "F1", slug: "tjm", nom: "Calculateur de TJM", motsCles: "taux journalier freelance tarif" },
+      { code: "F2", slug: "rentabilite-mission", nom: "Rentabilité de mission", motsCles: "marge" },
+      { code: "F3", slug: "simulateur-prix", nom: "Simulateur de prix", detail: "Forfait ou régie", motsCles: "tarif devis forfait régie" },
+      { code: "F5", slug: "pitch", nom: "Canevas de pitch de 2 minutes", motsCles: "présentation elevator" },
+      { code: "F8", slug: "point-mort", nom: "Calcul du point mort", motsCles: "seuil de rentabilité" },
+      { code: "F10", slug: "signature-email", nom: "Signature d'e-mail", motsCles: "mail signature" },
     ],
   },
   {
@@ -161,12 +165,12 @@ export const rubriques: Rubrique[] = [
     titre: "Utilitaires",
     description: "Petits outils du quotidien.",
     outils: [
-      { code: "G1", slug: "compteur-mots", nom: "Compteur de mots et de caractères" },
-      { code: "G4", slug: "atelier-pdf", nom: "Atelier PDF", detail: "Fusion, compression" },
-      { code: "G5", slug: "extracteur-emails", nom: "Extracteur d'adresses e-mail" },
-      { code: "G6", slug: "listes", nom: "Traitement de listes", detail: "Tri, doublons, majuscules" },
-      { code: "G7", slug: "texte-de-test", nom: "Générateur de texte de test" },
-      { code: "G8", slug: "jours-ouvres", nom: "Jours ouvrés entre deux dates" },
+      { code: "G1", slug: "compteur-mots", nom: "Compteur de mots et de caractères", motsCles: "caractères texte" },
+      { code: "G4", slug: "atelier-pdf", nom: "Atelier PDF", detail: "Fusion, compression", motsCles: "fusionner compresser" },
+      { code: "G5", slug: "extracteur-emails", nom: "Extracteur d'adresses e-mail", motsCles: "adresses mail" },
+      { code: "G6", slug: "listes", nom: "Traitement de listes", detail: "Tri, doublons, majuscules", motsCles: "tri doublons" },
+      { code: "G7", slug: "texte-de-test", nom: "Générateur de texte de test", motsCles: "lorem ipsum" },
+      { code: "G8", slug: "jours-ouvres", nom: "Jours ouvrés entre deux dates", motsCles: "dates calendrier" },
     ],
   },
 ];

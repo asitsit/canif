@@ -1,9 +1,12 @@
-import Link from "next/link";
-import { rubriques, tousLesOutils } from "@/lib/catalogue";
+import CatalogueFiltrable from "@/components/catalogue-filtrable";
+import { tousLesOutils } from "@/lib/catalogue";
 
-// Page d'accueil : la liste de tous les outils, classés par moment de l'atelier.
+// Page d'accueil : la liste de tous les outils, classés par moment de l'atelier,
+// avec une recherche par mots-clés.
 
 export default function Accueil() {
+  const enLigne = tousLesOutils.filter((o) => o.pret).length;
+
   return (
     <>
       <section className="intro">
@@ -12,37 +15,15 @@ export default function Accueil() {
           {tousLesOutils.length} outils gratuits, dans un seul onglet. Les participants rejoignent avec un lien,
           sans créer de compte.
         </p>
+        <p className="discret">
+          <span className="etiquette etiquette-en-ligne">
+            <span className="pastille" aria-hidden="true" /> {enLigne} en ligne
+          </span>{" "}
+          Les autres arrivent au fur et à mesure.
+        </p>
       </section>
 
-      <nav className="sommaire" aria-label="Rubriques">
-        {rubriques.map((r) => (
-          <a key={r.id} href={`#${r.id}`}>
-            {r.titre}
-          </a>
-        ))}
-      </nav>
-
-      {rubriques.map((rubrique) => (
-        <section key={rubrique.id} id={rubrique.id} className="rubrique">
-          <h2>{rubrique.titre}</h2>
-          <p className="discret">{rubrique.description}</p>
-
-          <ul className="grille">
-            {rubrique.outils.map((outil) => (
-              <li key={outil.code}>
-                <Link href={`/${outil.slug}`} className="carte">
-                  <span className="carte-nom">{outil.nom}</span>
-                  {outil.detail && <span className="carte-detail">{outil.detail}</span>}
-                  <span className="carte-etiquettes">
-                    {outil.memoire && <span className="etiquette etiquette-direct">En direct</span>}
-                    {!outil.pret && <span className="etiquette">Bientôt</span>}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <CatalogueFiltrable />
     </>
   );
 }
