@@ -14,11 +14,11 @@ import { useEffect, useRef, useState } from "react";
 import { useChrono, useEcranAllume, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, formaterDuree, SECONDE } from "@/lib/temps";
-import { lireProgramme } from "./programme";
+import { lireProgramme, type Intervenant } from "./programme";
 import styles from "./chrono-parole.module.css";
 
 // Programme d'exemple proposé à la première visite.
-const EXEMPLE = "Jacques : 3 min\nAlex : 7 min\nJean : 10 min";
+const EXEMPLE = "Jacques : 3 min\nSophie : 5 min\nKarim : 7 min\nLéa : 10 min";
 
 // Le programme saisi est gardé dans ce navigateur uniquement (rien n'est envoyé).
 const CLE_STOCKAGE = "canif.chrono-parole.programme";
@@ -52,13 +52,17 @@ export default function ChronoParole() {
   const [reels, setReels] = useState<number[]>([]); // temps réels des intervenants passés
   const [demarree, setDemarree] = useState(false); // la séance a commencé
   const [terminee, setTerminee] = useState(false); // tout le monde est passé
+  // Ordre de passage de la séance. Copié depuis le programme au démarrage,
+  // puis modifiable (flèches, « Passer son tour ») sans toucher au texte saisi.
+  const [seance, setSeance] = useState<Intervenant[] | null>(null);
 
   const chrono = useChrono();
   const pleinEcran = usePleinEcran<HTMLDivElement>();
 
   const { intervenants, lignesIllisibles } = lireProgramme(texte);
-  const courant = intervenants[indexCourant];
-  const prochain = intervenants[indexCourant + 1];
+  const liste = seance ?? intervenants; // ordre utilisé pour la séance
+  const courant = liste[indexCourant];
+  const prochain = liste[indexCourant + 1];
 
   // --- Mémoire du programme dans le navigateur (facultative) ---
 
@@ -101,9 +105,9 @@ export default function ChronoParole() {
       : formater(prevu - ecoule);
 
   // Écart cumulé du programme : intervenants passés + dépassement en cours.
-  const ecartPasses = reels.reduce((total, reel, i) => total + reel - intervenants[i].prevuMs, 0);
+  const ecartPasses = reels.reduce((total, reel, i) => total + reel - liste[i].prevuMs, 0);
   const ecartCumule = ecartPasses + (!terminee && depasse ? ecoule - prevu : 0);
-  const totalPrevu = intervenants.reduce((total, i) => total + i.prevuMs, 0);
+  const totalPrevu = liste.reduce((total, i) => total + i.prevuMs, 0);
   const totalReel = reels.reduce((total, r) => total + r, 0) + (terminee ? 0 : ecoule);
 
   // Un bip au moment exact où l'on passe au rouge.
@@ -121,6 +125,7 @@ export default function ChronoParole() {
       chrono.mettreEnPause();
     } else {
       preparerSon();
+      if (!demarree) setSeance(intervenants);
       setDemarree(true);
       chrono.demarrer();
     }
@@ -140,7 +145,30 @@ export default function ChronoParole() {
     }
   }
 
+  // Échange un intervenant à venir avec son voisin (sens : -1 vers le haut, +1 vers le bas).
+  function deplacer(index: number, sens: -1 | 1) {
+    const cible = index + sens;
+    if (index <= indexCourant || cible <= indexCourant || cible >= liste.length) return;
+    const nouvelle = [...liste];
+    [nouvelle[index], nouvelle[cible]] = [nouvelle[cible], nouvelle[index]];
+    setSeance(nouvelle);
+  }
+
+  // L'intervenant en cours repasse en fin de liste ; le suivant prend la parole.
+  // Le temps déjà écoulé pour lui n'est pas compté.
+  function passerSonTour() {
+    if (terminee || !prochain) return;
+    const nouvelle = [...liste];
+    const [reporte] = nouvelle.splice(indexCourant, 1);
+    nouvelle.push(reporte);
+    setSeance(nouvelle);
+    const tournait = chrono.enCours;
+    chrono.reinitialiser();
+    if (tournait) chrono.demarrer();
+  }
+
   function recommencer() {
+    setSeance(null);
     chrono.reinitialiser();
     setIndexCourant(0);
     setReels([]);
@@ -164,10 +192,12 @@ export default function ChronoParole() {
   };
 
   const cumul = decrireEcart(ecartCumule);
+  // L'ordre se modifie pendant la séance (avant, on modifie directement le texte).
+  const modifiable = demarree && !terminee;
 
   return (
     <div className="outil-temps">
-      {intervenants.length > 0 && (
+      {liste.length > 0 && (
         <div
           ref={pleinEcran.ref}
           className={`ecran ${styles[couleur]} ${pleinEcran.actif ? "ecran-plein" : ""}`}
@@ -178,7 +208,7 @@ export default function ChronoParole() {
           {!terminee && (
             <p className={styles.prevu}>
               Temps prévu : {formaterDuree(prevu)}
-              {intervenants.length > 1 && ` (${indexCourant + 1} sur ${intervenants.length})`}
+              {liste.length > 1 && ` (${indexCourant + 1} sur ${liste.length})`}
             </p>
           )}
 
@@ -228,7 +258,7 @@ export default function ChronoParole() {
         </div>
       )}
 
-      {intervenants.length > 0 && (
+      {liste.length > 0 && (
         <section className="reglages" aria-label="Suivi des intervenants">
           <h2>Suivi</h2>
           <div className={styles.tableauConteneur}>
@@ -239,10 +269,11 @@ export default function ChronoParole() {
                   <th scope="col">Prévu</th>
                   <th scope="col">Réel</th>
                   <th scope="col">Écart</th>
+                  {modifiable && <th scope="col">Ordre</th>}
                 </tr>
               </thead>
               <tbody>
-                {intervenants.map((intervenant, i) => {
+                {liste.map((intervenant, i) => {
                   const passe = i < reels.length;
                   const enCours = !terminee && i === indexCourant && demarree;
                   const reel = passe ? reels[i] : enCours ? ecoule : null;
@@ -260,6 +291,35 @@ export default function ChronoParole() {
                       <td className={ecart ? styles[ecart.sens] : ""}>
                         {ecart ? ecart.texte : enCours ? "en cours" : ""}
                       </td>
+                      {modifiable && (
+                        <td className={styles.ordre}>
+                          {i === indexCourant && (
+                            <button className={styles.petitBouton} onClick={passerSonTour} disabled={!prochain}>
+                              Passer son tour
+                            </button>
+                          )}
+                          {i > indexCourant && (
+                            <>
+                              <button
+                                className={styles.petitBouton}
+                                onClick={() => deplacer(i, -1)}
+                                disabled={i - 1 <= indexCourant}
+                                aria-label={`Faire passer ${intervenant.nom} plus tôt`}
+                              >
+                                ↑
+                              </button>
+                              <button
+                                className={styles.petitBouton}
+                                onClick={() => deplacer(i, 1)}
+                                disabled={i === liste.length - 1}
+                                aria-label={`Faire passer ${intervenant.nom} plus tard`}
+                              >
+                                ↓
+                              </button>
+                            </>
+                          )}
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
@@ -270,6 +330,7 @@ export default function ChronoParole() {
                   <td>{formater(totalPrevu, "bas")}</td>
                   <td>{demarree ? formater(totalReel, "bas") : ""}</td>
                   <td className={demarree ? styles[cumul.sens] : ""}>{demarree ? cumul.texte : ""}</td>
+                  {modifiable && <td />}
                 </tr>
               </tfoot>
             </table>
@@ -291,7 +352,12 @@ export default function ChronoParole() {
             spellCheck={false}
           />
         </label>
-        {demarree && <p className="discret">Pour modifier le programme, cliquez sur « Recommencer ».</p>}
+        {demarree && (
+          <p className="discret">
+            Pendant la séance, changez l'ordre avec les flèches du tableau. Pour modifier les noms ou les temps,
+            cliquez sur « Recommencer ».
+          </p>
+        )}
         {!demarree && (
           <p className="discret">
             Formats acceptés : « Jacques : 3 min », « Alex ; 7 », « Marie : 2:30 », « Paul : 1h30 ».

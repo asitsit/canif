@@ -132,6 +132,35 @@
   color: var(--texte-discret);
 }
 
+/* Boutons de changement d'ordre dans le tableau */
+.ordre {
+  white-space: nowrap;
+}
+
+.petitBouton {
+  min-width: 36px;
+  min-height: 36px;
+  margin-right: 4px;
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texte);
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.petitBouton:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.petitBouton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 /* Saisie du programme */
 .saisie {
   width: 100%;
