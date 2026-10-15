@@ -1,0 +1,177 @@
+/* Roadmap. */
+
+.cadre {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+}
+
+.titre {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: 800;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.defilement {
+  overflow-x: auto;
+}
+
+.grille {
+  display: grid;
+  gap: 6px;
+}
+
+/* Chaque ligne de thème occupe toute la largeur de la grille */
+.ligne {
+  display: contents;
+}
+
+.periode,
+.theme {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.periode input,
+.theme input {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  font-weight: 700;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--fond);
+}
+
+.periode input {
+  text-align: center;
+}
+
+.titre:hover,
+.titre:focus,
+.periode input:hover,
+.periode input:focus,
+.theme input:hover,
+.theme input:focus {
+  border-color: var(--bordure);
+  outline: none;
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 70px;
+  padding: 6px;
+  border: 1px dashed var(--bordure);
+  border-radius: 8px;
+}
+
+.element {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  background: var(--fond);
+  border-radius: 6px;
+  border-left: 4px solid var(--couleur-statut);
+}
+
+.element span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.statut {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  padding: 0;
+  border: 2px solid var(--couleur-statut);
+  border-radius: 50%;
+  background: var(--fond-statut);
+  cursor: pointer;
+}
+
+.prevu {
+  --couleur-statut: #94a3b8;
+  --fond-statut: transparent;
+}
+
+.encours {
+  --couleur-statut: #f59e0b;
+  --fond-statut: #fde68a;
+}
+
+.fait {
+  --couleur-statut: #16a34a;
+  --fond-statut: #16a34a;
+}
+
+.fait > span {
+  color: var(--texte-discret);
+}
+
+.x {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: var(--texte-discret);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.ajouter {
+  align-self: flex-start;
+  width: 28px;
+  height: 24px;
+  margin-top: auto;
+  font: inherit;
+  color: var(--texte-discret);
+  background: none;
+  border: 1px dashed var(--bordure);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.saisie {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+}
+
+.legende {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.legende > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legende .statut {
+  display: inline-block;
+  margin: 0;
+  cursor: default;
+}

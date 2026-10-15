@@ -42,9 +42,10 @@ export default function GenerateurTexte({ cle, champs, generer, courriel = false
     if (!retouche) setTexte(produit.texte);
   }, [produit.texte, retouche]);
 
+  // Modifier le formulaire ne touche pas aux retouches faites à la main dans le texte
+  // (elles ne sont abandonnées que par « Annuler mes retouches »).
   function modifier(id: string, valeur: string) {
     setValeurs((anciennes) => ({ ...defauts, ...anciennes, [id]: valeur }));
-    setRetouche(false);
   }
 
   const lienCourriel = `mailto:?subject=${encodeURIComponent(produit.objet ?? "")}&body=${encodeURIComponent(texte)}`;

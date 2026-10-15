@@ -197,15 +197,20 @@
 }
 
 /* Axes des matrices */
+/* Le premier libellé (bas de l'axe) s'affiche en bas : colonne inversée */
 .axeVertical {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: space-around;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--texte-discret);
+}
+
+/* Chaque libellé est écrit de bas en haut */
+.axeVertical span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 .axeHorizontal {

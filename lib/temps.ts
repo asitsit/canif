@@ -20,7 +20,7 @@ export function formaterDuree(ms: number) {
   const heures = Math.floor(totalSecondes / 3600);
   const minutes = Math.floor((totalSecondes % 3600) / 60);
   const secondes = totalSecondes % 60;
-  if (heures > 0) return `${heures} h ${String(minutes).padStart(2, "0")} min`;
+  if (heures > 0) return minutes ? `${heures} h ${String(minutes).padStart(2, "0")} min` : `${heures} h`;
   if (minutes > 0 && secondes > 0) return `${minutes} min ${secondes} s`;
   if (minutes > 0) return `${minutes} min`;
   return `${secondes} s`;

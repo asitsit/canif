@@ -99,7 +99,7 @@ export default function TableauZones({
         <div className={styles.cadreAxes}>
           {axes?.vertical && (
             <div className={styles.axeVertical} aria-hidden="true">
-              {/* Texte tourné d'un demi-tour : le premier libellé s'affiche en bas */}
+              {/* Le premier libellé s'affiche en bas de l'axe (voir le CSS) */}
               <span>{axes.vertical[0]}</span>
               <span>{axes.vertical[1]}</span>
             </div>

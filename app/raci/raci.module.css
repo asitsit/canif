@@ -1,0 +1,148 @@
+/* Matrice RACI. */
+
+.cadre {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+}
+
+.defilement {
+  overflow-x: auto;
+}
+
+.raci {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.raci th,
+.raci td {
+  padding: 6px;
+  border-bottom: 1px solid var(--bordure);
+  text-align: center;
+}
+
+.raci thead th {
+  white-space: nowrap;
+}
+
+.raci thead input {
+  width: 8em;
+  padding: 4px 6px;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.raci tbody th {
+  text-align: left;
+  min-width: 200px;
+}
+
+.tache {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tache input {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.raci input:hover,
+.raci input:focus {
+  border-color: var(--bordure);
+  outline: none;
+}
+
+.retirer {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  color: var(--texte-discret);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.case {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font: inherit;
+  font-weight: 800;
+  border: 1px dashed var(--bordure);
+  border-radius: 8px;
+  background: var(--fond);
+  cursor: pointer;
+}
+
+.R {
+  background: #bfdbfe;
+  border: none;
+  color: #1e3a8a;
+}
+
+.A {
+  background: #fecaca;
+  border: none;
+  color: #7f1d1d;
+}
+
+.C {
+  background: #fde68a;
+  border: none;
+  color: #78350f;
+}
+
+.I {
+  background: #e5e7eb;
+  border: none;
+  color: #374151;
+}
+
+.alerte {
+  color: var(--rouge);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ok {
+  color: var(--vert);
+  font-weight: 800;
+}
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.legende li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legende .case {
+  width: 28px;
+  height: 28px;
+  cursor: default;
+}

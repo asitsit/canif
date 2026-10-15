@@ -1,0 +1,80 @@
+/* Gantt et rétro-planning. */
+
+.taches {
+  display: grid;
+  gap: 8px;
+}
+
+.tache {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+}
+
+.tache label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--texte-discret);
+}
+
+.tache input[type="date"],
+.nom {
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--texte);
+}
+
+.nom {
+  flex: 1 1 200px;
+  font-weight: 600;
+}
+
+.couleur {
+  width: 36px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+}
+
+.ordre {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.ordre button {
+  width: 30px;
+  height: 30px;
+  font: inherit;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.ordre button:disabled {
+  opacity: 0.35;
+}
+
+.case input {
+  width: 18px;
+  height: 18px;
+}
+
+.cadre {
+  padding: 16px;
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+}

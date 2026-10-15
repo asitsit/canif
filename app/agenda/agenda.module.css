@@ -1,0 +1,74 @@
+/* Générateur d'agenda. */
+
+.agenda {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.titre {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.date {
+  margin: 4px 0 0;
+  color: var(--texte-discret);
+}
+
+.lignes {
+  display: grid;
+  gap: 0;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lignes li {
+  display: grid;
+  grid-template-columns: 9.5em 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.heures {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.nom {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.duree {
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+}
+
+.pause {
+  background: var(--fond);
+}
+
+.pause .nom {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.total {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .lignes li {
+    grid-template-columns: 1fr auto;
+  }
+
+  .heures {
+    grid-column: 1 / -1;
+  }
+}

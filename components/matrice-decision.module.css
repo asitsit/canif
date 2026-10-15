@@ -1,0 +1,134 @@
+/* Matrice de décision pondérée. */
+
+.cadre {
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+}
+
+.defilement {
+  overflow-x: auto;
+}
+
+.matrice {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.matrice th,
+.matrice td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--bordure);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.matrice thead th {
+  white-space: nowrap;
+}
+
+.matrice tbody th {
+  text-align: left;
+  min-width: 180px;
+}
+
+.critere {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.critere input,
+.nomOption {
+  width: 100%;
+  min-width: 90px;
+  padding: 6px 8px;
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.nomOption {
+  text-align: center;
+  width: calc(100% - 28px);
+}
+
+.critere input:hover,
+.critere input:focus,
+.nomOption:hover,
+.nomOption:focus {
+  border-color: var(--bordure);
+  outline: none;
+}
+
+.poids select,
+.note {
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+}
+
+.note {
+  min-width: 3.4em;
+  font-weight: 700;
+}
+
+.retirer {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--texte-discret);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.matrice tfoot td {
+  border-bottom: none;
+}
+
+.matrice tfoot strong {
+  display: block;
+  font-size: 1.3rem;
+}
+
+.brut {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--texte-discret);
+}
+
+.gagnant {
+  background: #dcfce7;
+  border-radius: 8px;
+}
+
+.verdict {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.bon {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.moyen {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.mauvais {
+  background: #fee2e2;
+  color: #991b1b;
+}
