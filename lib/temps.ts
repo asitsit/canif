@@ -14,6 +14,18 @@ export function formater(ms: number, arrondi: "haut" | "bas" = "haut") {
   return heures > 0 ? `${heures}:${mm}:${ss}` : `${mm}:${ss}`;
 }
 
+// Écrit une durée en toutes lettres courtes : « 1 min 20 s », « 45 s », « 1 h 05 min ».
+export function formaterDuree(ms: number) {
+  const totalSecondes = Math.round(Math.abs(ms) / 1000);
+  const heures = Math.floor(totalSecondes / 3600);
+  const minutes = Math.floor((totalSecondes % 3600) / 60);
+  const secondes = totalSecondes % 60;
+  if (heures > 0) return `${heures} h ${String(minutes).padStart(2, "0")} min`;
+  if (minutes > 0 && secondes > 0) return `${minutes} min ${secondes} s`;
+  if (minutes > 0) return `${minutes} min`;
+  return `${secondes} s`;
+}
+
 // Affiche une heure « 10:45 » à partir d'une date.
 export function formaterHeure(date: Date) {
   return date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });

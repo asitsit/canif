@@ -286,6 +286,10 @@ h2 {
   color: var(--texte);
 }
 
+.champ select {
+  max-width: 22em;
+}
+
 .champ input[type="number"] {
   width: 6.5em;
 }

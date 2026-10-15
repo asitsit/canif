@@ -1,9 +1,10 @@
 # C3 : Chronomètre de parole
 
-Temps de parole lisible de loin. Adresse : `/chrono-parole`.
+Déroulé d'intervenants avec temps de parole. Adresse : `/chrono-parole`.
 
-- L'écran entier est vert, puis orange avant la fin (15 s à 2 min avant, réglable), puis rouge.
-- Après la fin, le chronomètre continue et affiche le dépassement (« +00:15 »).
-- « Intervenant suivant » range le passage dans un historique (durée, dépassement) et remet à zéro.
-- Un bip optionnel au passage au rouge. Plein écran. Raccourcis : Espace, N, F.
-- Aucune donnée envoyée au serveur. L'historique disparaît quand on ferme la page.
+- Programme saisi en texte, un intervenant par ligne : « Jacques : 3 min », « Alex ; 7 », « Marie : 2:30 », « Paul : 1h30 ». Les lignes non comprises sont signalées. Lecture dans `programme.ts`.
+- Écran projetable : nom de l'intervenant, temps restant, feu vert / orange / rouge, dépassement (« +00:15 »), intervenant suivant, avance ou retard cumulé du programme.
+- « Intervenant suivant » enregistre le temps réel et enchaîne sur le suivant sans arrêter le chrono.
+- Tableau de suivi : prévu, réel, écart (avance, à l'heure à 5 s près, retard), total.
+- Bip optionnel au passage au rouge. Plein écran. Raccourcis : Espace, N, F.
+- Le programme est gardé dans le navigateur (localStorage) pour la prochaine visite. Rien n'est envoyé au serveur.

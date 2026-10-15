@@ -39,35 +39,122 @@
   border-color: #ffffff;
 }
 
+.nom {
+  margin: 0;
+  font-size: clamp(1.8rem, 9vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+:global(.ecran-plein) .nom {
+  font-size: clamp(2.5rem, 10vw, 14vh);
+}
+
+.prevu {
+  margin: 4px 0 16px;
+  opacity: 0.85;
+}
+
 .message {
   font-size: 1.3rem;
 }
 
-/* Historique des passages */
-.passages {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 6px;
+.infos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
-.passages li {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 16px;
-  padding: 10px 14px;
-  background: var(--surface);
-  border: 1px solid var(--bordure);
-  border-radius: 8px;
-  font-variant-numeric: tabular-nums;
-}
-
-.ecartOk {
+/* Couleurs des écarts (tableau et ligne « Programme ») */
+.avance {
   color: var(--vert);
 }
 
-.ecartDepasse {
+.heure {
+  color: var(--texte-discret);
+}
+
+.retard {
   color: var(--rouge);
   font-weight: 600;
+}
+
+/* Sur fond coloré, les écarts restent en blanc pour être lisibles */
+.vert .infos span,
+.orange .infos span,
+.rouge .infos span {
+  color: #ffffff;
+}
+
+/* Tableau de suivi */
+.tableauConteneur {
+  overflow-x: auto;
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  font-variant-numeric: tabular-nums;
+}
+
+.tableau th,
+.tableau td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.tableau thead th {
+  font-size: 0.85rem;
+  color: var(--texte-discret);
+  font-weight: 600;
+}
+
+.tableau tfoot th,
+.tableau tfoot td {
+  border-bottom: none;
+  font-weight: 700;
+}
+
+.ligneCourante {
+  background: var(--accent-clair);
+  font-weight: 600;
+}
+
+.ligneAVenir {
+  color: var(--texte-discret);
+}
+
+/* Saisie du programme */
+.saisie {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texte);
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.saisie:disabled {
+  opacity: 0.6;
+}
+
+.erreur {
+  margin: 0;
+  color: var(--rouge);
+}
+
+.erreur ul {
+  margin: 4px 0 0;
 }
