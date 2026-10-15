@@ -15,7 +15,7 @@ import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import { useChrono, useEcranAllume, usePleinEcran, useRaccourcis, useTitreOnglet } from "@/lib/hooks";
 import { biper, preparerSon } from "@/lib/son";
 import { formater, formaterDuree, SECONDE } from "@/lib/temps";
-import { lireProgramme, type Intervenant } from "./programme";
+import { lireProgramme, type Intervenant } from "@/lib/programme";
 import styles from "./chrono-parole.module.css";
 
 // Programme d'exemple proposé à la première visite.

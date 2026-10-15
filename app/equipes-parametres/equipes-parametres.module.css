@@ -1,0 +1,94 @@
+/* Styles propres aux équipes avec paramètres. Tailles en « em » pour le plein écran. */
+
+.groupe {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.groupe legend {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+:global(.ecran-plein) .grille {
+  grid-template-columns: repeat(var(--colonnes, 3), minmax(0, 1fr));
+  gap: 0.5em;
+  margin: 0;
+}
+
+.equipe {
+  padding: 0.7em 0.8em;
+  border: 1px solid var(--bordure);
+  border-top: 6px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.equipe h3 {
+  margin: 0 0 0.4em;
+  font-size: 1.1em;
+}
+
+.equipe ul {
+  display: grid;
+  gap: 0.25em;
+  margin: 0 0 0.6em;
+  padding: 0;
+  list-style: none;
+}
+
+.equipe li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5em;
+}
+
+.nom {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.criteres {
+  font-size: 0.8em;
+  color: var(--texte-discret);
+}
+
+.bilan {
+  display: grid;
+  gap: 0.15em;
+  margin: 0;
+  padding-top: 0.5em;
+  border-top: 1px dashed var(--bordure);
+  font-size: 0.8em;
+}
+
+.bilan div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.4em;
+}
+
+.bilan dt {
+  font-weight: 700;
+}
+
+.bilan dt::after {
+  content: " :";
+}
+
+.bilan dd {
+  margin: 0;
+  color: var(--texte-discret);
+}

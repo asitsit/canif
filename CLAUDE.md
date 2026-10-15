@@ -54,6 +54,9 @@ Canif (nom de travail) est un site public et gratuit regroupant 72 outils pour f
   - `lib/hasard.ts` : tirages équitables (`entierAleatoire`, `melanger`, `lireListe`), toujours via `crypto.getRandomValues`.
   - `components/liste-noms.tsx` : liste de noms partagée entre les outils de tirage (`useListeNoms`, `ChampNoms`).
   - `components/bouton-copier.tsx` : bouton « Copier le résultat ».
+  - `components/bouton-plein-ecran.tsx` : bouton plein écran commun (« Quitter » fixé en haut à droite). `useAjusterAuPleinEcran` fait tenir une liste sur un écran.
+  - `lib/programme.ts` : lecture d'un programme en texte (« Accueil : 10 min »), utilisée par C2 et C3.
+  - `lib/equipes.ts` : répartitions en équipes (simple et avec critères), utilisées par C9 et C10.
   - `app/globals.css` : classes partagées (`.bouton`, `.champ`, `.ecran`, `.chiffres`, `.barre`, `.commandes`, `.reglages`...). Les styles propres à un outil vont dans son `*.module.css`.
 - Chaque outil a un `README.md` de quelques lignes dans son dossier.
 - `app/api/` : routes serveur (seul endroit où une clé secrète pourra être lue).

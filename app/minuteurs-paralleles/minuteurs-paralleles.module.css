@@ -1,0 +1,127 @@
+/* Styles propres aux minuteurs parallèles. Tailles en « em » pour que le
+   plein écran puisse tout agrandir d'un coup (useAjusterAuPleinEcran). */
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+:global(.ecran-plein) .grille {
+  grid-template-columns: repeat(var(--colonnes, 2), minmax(0, 1fr));
+  gap: 0.5em;
+}
+
+.carte {
+  display: grid;
+  gap: 0.5em;
+  padding: 0.8em;
+  text-align: center;
+  background: var(--surface);
+  border: 2px solid var(--bordure);
+  border-radius: 12px;
+}
+
+.enCours {
+  border-color: var(--accent);
+}
+
+.fini {
+  border-color: var(--rouge);
+  background: #fef2f2;
+}
+
+.nom {
+  width: 100%;
+  padding: 0.2em 0.3em;
+  font: inherit;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--texte);
+  background: transparent;
+  border: 1px dashed transparent;
+  border-radius: 6px;
+}
+
+.nom:hover,
+.nom:focus {
+  border-color: var(--bordure);
+  outline: none;
+}
+
+.chiffres {
+  font-size: 2.8em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.fini .chiffres {
+  color: var(--rouge);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.petit {
+  min-height: 2.2em;
+  padding: 0.3em 0.8em;
+  font: inherit;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--texte);
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.petit:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.petit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.principal {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.reglage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  font-size: 0.9rem;
+  color: var(--texte-discret);
+}
+
+.reglage label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reglage input {
+  width: 4.5em;
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--texte);
+}
+
+.commandes {
+  margin-top: 16px;
+}

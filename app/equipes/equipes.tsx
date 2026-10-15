@@ -7,7 +7,7 @@ import BoutonCopier from "@/components/bouton-copier";
 import BoutonPleinEcran from "@/components/bouton-plein-ecran";
 import ChampNoms, { useListeNoms } from "@/components/liste-noms";
 import { useAjusterAuPleinEcran, usePleinEcran, useRaccourcis } from "@/lib/hooks";
-import { nombreEquipes, repartir, type Mode } from "./repartition";
+import { nombreEquipes, repartir, type Mode } from "@/lib/equipes";
 import styles from "./equipes.module.css";
 
 export default function Equipes() {

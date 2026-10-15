@@ -1,4 +1,5 @@
-// Lecture du programme saisi par l'animateur, une ligne par intervenant.
+// Lecture d'un programme saisi en texte, une ligne par élément (intervenant,
+// étape...) avec sa durée. Utilisé par le chronomètre de parole et le minuteur d'étapes.
 //
 // Formats acceptés (exemples) :
 //   Jacques : 3min        Alex ; 7 mins        Jean - 10

@@ -76,17 +76,17 @@ export const rubriques: Rubrique[] = [
     outils: [
       // Temps et rythme
       { code: "C1", slug: "minuteur", nom: "Minuteur", detail: "Compte à rebours", pret: true, motsCles: "timer compte à rebours chrono temps" },
-      { code: "C2", slug: "minuteur-etapes", nom: "Minuteur d'étapes enchaînées", motsCles: "timer séquence enchaînement temps" },
+      { code: "C2", slug: "minuteur-etapes", nom: "Minuteur d'étapes enchaînées", motsCles: "timer séquence enchaînement temps", pret: true },
       { code: "C3", slug: "chrono-parole", nom: "Chronomètre de parole", detail: "Temps par intervenant, avance ou retard", pret: true, motsCles: "timer temps de parole intervenants orateurs avance retard" },
       { code: "C4", slug: "pause", nom: "Écran de pause projetable", pret: true, motsCles: "café break reprise" },
       { code: "C5", slug: "pomodoro", nom: "Pomodoro", pret: true, motsCles: "timer concentration focus travail" },
-      { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes", motsCles: "sous-groupes timer plusieurs" },
+      { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes", motsCles: "sous-groupes timer plusieurs", pret: true },
       // Groupes et tirage
       { code: "C8", slug: "roue", nom: "Roue de noms", pret: true, motsCles: "hasard aléatoire tirage au sort spinner" },
       { code: "C9", slug: "equipes", nom: "Générateur d'équipes", pret: true, motsCles: "groupes hasard aléatoire répartition" },
-      { code: "C10", slug: "equipes-parametres", nom: "Équipes avec paramètres", detail: "Service, niveau, site", motsCles: "groupes critères mixité" },
+      { code: "C10", slug: "equipes-parametres", nom: "Équipes avec paramètres", detail: "Service, niveau, site", motsCles: "groupes critères mixité", pret: true },
       { code: "C11", slug: "ordre-de-passage", nom: "Ordre de passage", pret: true, motsCles: "hasard aléatoire tirage au sort ordre" },
-      { code: "C12", slug: "des", nom: "Dés personnalisables", motsCles: "dé hasard aléatoire jeu" },
+      { code: "C12", slug: "des", nom: "Dés personnalisables", motsCles: "dé hasard aléatoire jeu", pret: true },
       { code: "C13", slug: "pile-ou-face", nom: "Pile ou face", pret: true, motsCles: "pièce hasard aléatoire" },
       {
         code: "C14",
