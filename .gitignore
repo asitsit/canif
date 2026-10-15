@@ -1,0 +1,26 @@
+# Dépendances et sorties de compilation
+node_modules/
+.next/
+.astro/
+dist/
+build/
+coverage/
+
+# Secrets : ne jamais committer (le modèle .env.example, lui, est conservé)
+.env
+.env.*
+!.env.example
+
+# Vercel et Supabase en local
+.vercel/
+supabase/.temp/
+
+# Système et éditeur
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+
+# Fichiers générés par Next.js et TypeScript
+next-env.d.ts
+*.tsbuildinfo

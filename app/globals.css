@@ -1,0 +1,238 @@
+/* Styles communs à tout le site.
+   Mobile d'abord : les règles de base visent le téléphone,
+   les blocs @media agrandissent pour les écrans plus larges. */
+
+:root {
+  --fond: #faf8f5;
+  --surface: #ffffff;
+  --texte: #1f2328;
+  --texte-discret: #5c636b;
+  --bordure: #e3ded6;
+  --accent: #c2410c;
+  --accent-clair: #fff1e8;
+  --direct: #0f766e;
+  --direct-clair: #e6f6f4;
+  --rayon: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.25rem;
+}
+
+.conteneur {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.discret {
+  color: var(--texte-discret);
+  margin-top: 0;
+}
+
+/* En-tête */
+.entete {
+  background: var(--surface);
+  border-bottom: 1px solid var(--bordure);
+}
+
+.entete-contenu {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--texte);
+  text-decoration: none;
+}
+
+.entete-slogan {
+  color: var(--texte-discret);
+  font-size: 0.95rem;
+}
+
+/* Accueil */
+.intro {
+  padding: 32px 0 16px;
+}
+
+.intro p {
+  font-size: 1.1rem;
+  max-width: 60ch;
+}
+
+.sommaire {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sommaire a {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--bordure);
+  background: var(--surface);
+  color: var(--texte);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.sommaire a:hover {
+  border-color: var(--accent);
+}
+
+.rubrique {
+  padding-top: 24px;
+}
+
+.grille {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.carte {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  color: var(--texte);
+  text-decoration: none;
+}
+
+.carte:hover,
+.carte:focus-visible {
+  border-color: var(--accent);
+}
+
+.carte-nom {
+  font-weight: 600;
+}
+
+.carte-detail {
+  color: var(--texte-discret);
+  font-size: 0.92rem;
+}
+
+.carte-etiquettes {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.etiquette {
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-clair);
+  color: var(--accent);
+}
+
+.etiquette-direct {
+  background: var(--direct-clair);
+  color: var(--direct);
+}
+
+/* Page d'un outil */
+.page-outil {
+  padding: 24px 0 40px;
+  max-width: 70ch;
+}
+
+.fil {
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.encadre {
+  margin: 20px 0;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--rayon);
+}
+
+.encadre p {
+  margin: 0;
+}
+
+.encadre-transparence {
+  border-left-color: var(--direct);
+}
+
+/* Pied de page */
+.pied {
+  margin-top: 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--bordure);
+  font-size: 0.92rem;
+}
+
+.pied p {
+  margin: 0 0 4px;
+}
+
+/* Tablette */
+@media (min-width: 640px) {
+  .grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Ordinateur et projection */
+@media (min-width: 960px) {
+  .grille {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
