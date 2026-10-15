@@ -1,0 +1,41 @@
+/* Fond de visio. */
+
+.groupe {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.groupe legend {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.groupe:disabled {
+  opacity: 0.5;
+}
+
+.couleurs {
+  display: flex;
+  gap: 8px;
+}
+
+.couleurs input {
+  width: 56px;
+  height: 40px;
+  padding: 2px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+}
+
+.apercu {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}

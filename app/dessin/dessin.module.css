@@ -1,0 +1,81 @@
+/* Page blanche de dessin. */
+
+.outil {
+  display: grid;
+  gap: 10px;
+}
+
+.plein {
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  padding: 10px;
+  background: var(--fond);
+}
+
+.barre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.couleurs,
+.epaisseurs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.couleur {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--bordure);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.autre {
+  width: 36px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+}
+
+.epaisseur {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.epaisseur span {
+  display: block;
+  border-radius: 50%;
+  background: var(--texte);
+}
+
+.actif {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.canevas {
+  display: block;
+  width: 100%;
+  height: min(70vh, 640px);
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  touch-action: none; /* le doigt dessine au lieu de faire défiler la page */
+  cursor: crosshair;
+}
+
+.plein .canevas {
+  height: 100%;
+}

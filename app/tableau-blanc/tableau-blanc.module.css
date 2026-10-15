@@ -1,0 +1,77 @@
+/* Tableau blanc simple. */
+
+.barre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.couleurs {
+  display: inline-flex;
+  gap: 4px;
+  margin: 0 6px;
+}
+
+.couleur {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--bordure);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.actif {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.epaisseur {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--texte-discret);
+}
+
+.epaisseur input {
+  width: 100px;
+  accent-color: var(--accent);
+}
+
+.cadre {
+  position: relative;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none; /* le doigt dessine au lieu de faire défiler */
+  cursor: crosshair;
+}
+
+.selection {
+  cursor: default;
+}
+
+.texte {
+  cursor: text;
+}
+
+.edition {
+  position: absolute;
+  min-width: 160px;
+  min-height: 2.4em;
+  padding: 4px 6px;
+  font: inherit;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  resize: both;
+}
