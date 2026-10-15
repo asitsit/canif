@@ -74,9 +74,9 @@ export const rubriques: Rubrique[] = [
       // Temps et rythme
       { code: "C1", slug: "minuteur", nom: "Minuteur", detail: "Compte à rebours", pret: true },
       { code: "C2", slug: "minuteur-etapes", nom: "Minuteur d'étapes enchaînées" },
-      { code: "C3", slug: "chrono-parole", nom: "Chronomètre de parole", detail: "Vert, orange, rouge" },
-      { code: "C4", slug: "pause", nom: "Écran de pause projetable" },
-      { code: "C5", slug: "pomodoro", nom: "Pomodoro" },
+      { code: "C3", slug: "chrono-parole", nom: "Chronomètre de parole", detail: "Vert, orange, rouge", pret: true },
+      { code: "C4", slug: "pause", nom: "Écran de pause projetable", pret: true },
+      { code: "C5", slug: "pomodoro", nom: "Pomodoro", pret: true },
       { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes" },
       // Groupes et tirage
       { code: "C8", slug: "roue", nom: "Roue de noms" },

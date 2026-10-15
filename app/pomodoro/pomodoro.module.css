@@ -1,0 +1,50 @@
+/* Styles propres au Pomodoro. Travail en orange (couleur du site), pauses en vert. */
+
+.ecranPause {
+  background: #f0f9f3;
+}
+
+.phase {
+  margin: 0 0 12px;
+  font-size: clamp(1.4rem, 6vw, 2.6rem);
+  font-weight: 700;
+}
+
+.phaseTravail {
+  color: var(--accent);
+}
+
+.phasePause {
+  color: var(--vert);
+}
+
+.barrePause {
+  background: var(--vert);
+}
+
+.cycles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+  color: var(--texte-discret);
+}
+
+.points {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.point,
+.pointRempli {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+
+.pointRempli {
+  background: var(--accent);
+}

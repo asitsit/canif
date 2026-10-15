@@ -47,6 +47,12 @@ Canif (nom de travail) est un site public et gratuit regroupant 72 outils pour f
 - `lib/catalogue.ts` : liste des outils (copie de `docs/01-catalogue.md`, qui fait foi). Passer `pret: true` quand un outil est terminé.
 - `app/[outil]/page.tsx` : page d'attente générique pour chaque outil non construit.
 - **Un dossier par outil** : `app/<slug>/page.tsx` (par exemple `app/minuteur/`). Ce dossier prend automatiquement la priorité sur la page générique. Les composants propres à l'outil restent dans son dossier.
+- Briques communes, à réutiliser avant d'en écrire de nouvelles :
+  - `components/entete-outil.tsx` : en-tête de page d'outil (fil d'Ariane, nom), tiré du catalogue.
+  - `lib/hooks.ts` : `useChrono` (temps écoulé avec pause), `useMaintenant`, `usePleinEcran`, `useEcranAllume`, `useTitreOnglet`, `useRaccourcis`.
+  - `lib/temps.ts` (formatage des durées et des heures) et `lib/son.ts` (bips, sans fichier audio).
+  - `app/globals.css` : classes partagées (`.bouton`, `.champ`, `.ecran`, `.chiffres`, `.barre`, `.commandes`, `.reglages`...). Les styles propres à un outil vont dans son `*.module.css`.
+- Chaque outil a un `README.md` de quelques lignes dans son dossier.
 - `app/api/` : routes serveur (seul endroit où une clé secrète pourra être lue).
 - Variables lues dans le navigateur : préfixe `NEXT_PUBLIC_` obligatoire. Jamais de clé secrète avec ce préfixe.
 - Noms de fichiers et de dossiers en minuscules sans accents, textes de l'interface et commentaires en français.

@@ -12,6 +12,9 @@
   --accent-clair: #fff1e8;
   --direct: #0f766e;
   --direct-clair: #e6f6f4;
+  --vert: #15803d;
+  --orange: #c2410c;
+  --rouge: #b91c1c;
   --rayon: 12px;
 }
 
@@ -254,6 +257,143 @@ h2 {
   border-color: var(--accent);
   background: var(--accent-clair);
   color: var(--accent);
+}
+
+/* Champs de saisie communs */
+.champs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.champ {
+  display: grid;
+  gap: 4px;
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.champ input,
+.champ select {
+  min-width: 6.5em;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--texte);
+}
+
+.champ input[type="number"] {
+  width: 6.5em;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option input {
+  width: 20px;
+  height: 20px;
+}
+
+/* Outils de temps (minuteur, chronomètre, pause, Pomodoro) */
+.outil-temps {
+  display: grid;
+  gap: 24px;
+}
+
+/* Zone projetable : c'est elle qui passe en plein écran. */
+.ecran {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.ecran-plein {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+  border-radius: 0;
+  padding: 32px;
+}
+
+.chiffres {
+  font-size: clamp(4rem, 22vw, 12rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums; /* chiffres de largeur égale : rien ne bouge */
+  line-height: 1;
+}
+
+.ecran-plein .chiffres {
+  font-size: clamp(6rem, 28vw, 40vh);
+}
+
+.ecran-message {
+  min-height: 1.5em;
+  margin: 12px 0;
+  font-weight: 600;
+}
+
+.clignote {
+  animation: clignote 1s steps(2, start) infinite;
+}
+
+@keyframes clignote {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Respect des personnes qui demandent moins d'animations */
+@media (prefers-reduced-motion: reduce) {
+  .clignote {
+    animation: none;
+  }
+}
+
+.barre {
+  height: 8px;
+  margin: 20px auto 0;
+  max-width: 600px;
+  background: var(--bordure);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barre-remplie {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.25s linear;
+}
+
+.commandes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reglages {
+  display: grid;
+  gap: 16px;
+}
+
+.reglages h2 {
+  margin: 0;
+}
+
+.choix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* Pied de page */

@@ -1,0 +1,57 @@
+/* Styles propres à l'écran de pause. */
+
+.ecran {
+  display: grid;
+  gap: 8px;
+}
+
+.horloge {
+  margin: 0;
+  color: var(--texte-discret);
+  font-variant-numeric: tabular-nums;
+}
+
+.titre {
+  margin: 8px 0;
+  font-size: clamp(2.5rem, 12vw, 7rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.consigne {
+  margin: 0 0 8px;
+  color: var(--texte-discret);
+}
+
+.reprise {
+  margin: 0;
+  font-size: clamp(1.4rem, 6vw, 3rem);
+  font-weight: 600;
+}
+
+/* Le décompte est plus discret que dans le minuteur : l'heure de reprise prime. */
+.decompte {
+  font-size: clamp(3rem, 14vw, 7rem);
+  color: var(--texte-discret);
+  margin-bottom: 12px;
+}
+
+:global(.ecran-plein) .titre {
+  font-size: clamp(3rem, 14vw, 22vh);
+}
+
+:global(.ecran-plein) .decompte {
+  font-size: clamp(4rem, 18vw, 26vh);
+}
+
+.fin {
+  color: var(--vert);
+  margin-bottom: 12px;
+}
+
+.erreur {
+  margin: 0;
+  color: var(--rouge);
+}

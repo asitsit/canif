@@ -1,0 +1,73 @@
+/* Styles propres au chronomètre de parole : l'écran entier prend la couleur du feu. */
+
+.attente {
+  background: var(--surface);
+}
+
+.vert,
+.orange,
+.rouge {
+  color: #ffffff;
+  border-color: transparent;
+  transition: background-color 0.4s;
+}
+
+.vert {
+  background: var(--vert);
+}
+
+.orange {
+  background: #ea580c;
+}
+
+.rouge {
+  background: var(--rouge);
+}
+
+/* Boutons lisibles sur fond coloré */
+.vert :global(.bouton:not(.bouton-principal)),
+.orange :global(.bouton:not(.bouton-principal)),
+.rouge :global(.bouton:not(.bouton-principal)) {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.vert :global(.bouton-principal),
+.orange :global(.bouton-principal),
+.rouge :global(.bouton-principal) {
+  background: #ffffff;
+  color: var(--texte);
+  border-color: #ffffff;
+}
+
+.message {
+  font-size: 1.3rem;
+}
+
+/* Historique des passages */
+.passages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.passages li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ecartOk {
+  color: var(--vert);
+}
+
+.ecartDepasse {
+  color: var(--rouge);
+  font-weight: 600;
+}
