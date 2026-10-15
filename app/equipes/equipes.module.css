@@ -1,0 +1,45 @@
+/* Styles propres au générateur d'équipes. */
+
+.mode {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.mode legend {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--texte-discret);
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.equipe {
+  padding: 12px 14px;
+  border: 1px solid var(--bordure);
+  border-top: 6px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.equipe h3 {
+  margin: 0 0 8px;
+  font-size: 1.1em;
+}
+
+.equipe ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.equipe li {
+  padding: 2px 0;
+  overflow-wrap: anywhere;
+}

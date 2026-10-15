@@ -1,0 +1,58 @@
+/* Styles propres à l'ordre de passage. */
+
+.titre {
+  margin: 0 0 12px;
+}
+
+.ordre {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.ordre li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  font-size: 1.15em;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.85em;
+}
+
+/* Le dernier nom révélé est mis en avant */
+.dernier {
+  border-color: var(--accent) !important;
+  background: var(--accent-clair);
+  animation: apparition 0.35s ease-out;
+}
+
+@keyframes apparition {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dernier {
+    animation: none;
+  }
+}

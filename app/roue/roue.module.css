@@ -1,0 +1,55 @@
+/* Styles propres à la roue de noms. */
+
+.zone {
+  text-align: center;
+}
+
+.cadre {
+  position: relative;
+  width: min(100%, 480px);
+  margin: 0 auto;
+  padding-top: 14px;
+}
+
+:global(.ecran-plein) .cadre {
+  width: min(70vh, 90vw);
+}
+
+/* Flèche fixe en haut de la roue */
+.fleche {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 30px solid var(--texte);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+}
+
+.disque {
+  will-change: transform;
+}
+
+.disque svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gagnant {
+  min-height: 1.3em;
+  margin: 16px 0;
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+:global(.ecran-plein) .gagnant {
+  font-size: min(9vh, 10vw);
+  margin: 8px 0;
+}

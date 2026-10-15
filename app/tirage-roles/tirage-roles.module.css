@@ -1,0 +1,45 @@
+/* Styles propres au tirage de rôles. */
+
+.attributions {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.attributions li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--bordure);
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+}
+
+.role {
+  font-weight: 700;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.nom {
+  font-size: 1.1em;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.sansRole {
+  border-left-color: var(--bordure) !important;
+}
+
+.sansRole .role {
+  font-weight: 400;
+  color: var(--texte-discret);
+}
+
+.alerte {
+  color: var(--rouge);
+}

@@ -79,12 +79,12 @@ export const rubriques: Rubrique[] = [
       { code: "C5", slug: "pomodoro", nom: "Pomodoro", pret: true },
       { code: "C6", slug: "minuteurs-paralleles", nom: "Minuteurs parallèles", detail: "Pour les sous-groupes" },
       // Groupes et tirage
-      { code: "C8", slug: "roue", nom: "Roue de noms" },
-      { code: "C9", slug: "equipes", nom: "Générateur d'équipes" },
+      { code: "C8", slug: "roue", nom: "Roue de noms", pret: true },
+      { code: "C9", slug: "equipes", nom: "Générateur d'équipes", pret: true },
       { code: "C10", slug: "equipes-parametres", nom: "Équipes avec paramètres", detail: "Service, niveau, site" },
-      { code: "C11", slug: "ordre-de-passage", nom: "Ordre de passage" },
+      { code: "C11", slug: "ordre-de-passage", nom: "Ordre de passage", pret: true },
       { code: "C12", slug: "des", nom: "Dés personnalisables" },
-      { code: "C13", slug: "pile-ou-face", nom: "Pile ou face" },
+      { code: "C13", slug: "pile-ou-face", nom: "Pile ou face", pret: true },
       {
         code: "C14",
         slug: "jeu-de-cartes",
@@ -93,7 +93,7 @@ export const rubriques: Rubrique[] = [
         memoire: true,
         stockage: "le paquet de cartes et ses images",
       },
-      { code: "C15", slug: "tirage-roles", nom: "Tirage de rôles" },
+      { code: "C15", slug: "tirage-roles", nom: "Tirage de rôles", pret: true },
       // Interaction en direct
       { code: "C16", slug: "buzzer", nom: "Buzzer", memoire: true, stockage: "les pseudos et l'heure d'arrivée de chaque buzz" },
       { code: "C17", slug: "sondage", nom: "Sondage express", memoire: true, stockage: "la question et les votes" },

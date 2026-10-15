@@ -15,6 +15,15 @@
   --vert: #15803d;
   --orange: #c2410c;
   --rouge: #b91c1c;
+  /* Couleurs des équipes et des parts de la roue (texte blanc lisible sur chacune) */
+  --equipe-0: #c2410c;
+  --equipe-1: #0f766e;
+  --equipe-2: #1d4ed8;
+  --equipe-3: #7e22ce;
+  --equipe-4: #a16207;
+  --equipe-5: #be123c;
+  --equipe-6: #15803d;
+  --equipe-7: #334155;
   --rayon: 12px;
 }
 
@@ -288,6 +297,64 @@ h2 {
 
 .champ select {
   max-width: 22em;
+}
+
+.champ textarea {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--texte);
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.champ-liste .discret {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
+}
+
+/* Bouton qui ressemble à un lien (action secondaire) */
+.lien-bouton {
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Résultats de tirage : zone projetable et listes */
+.resultat {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: 20px 16px;
+}
+
+.resultat.ecran-plein {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+  border-radius: 0;
+  font-size: 1.6rem;
+}
+
+.mise-en-page-tirage {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .mise-en-page-tirage {
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    align-items: start;
+  }
 }
 
 .champ input[type="number"] {

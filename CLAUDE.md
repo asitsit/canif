@@ -51,6 +51,9 @@ Canif (nom de travail) est un site public et gratuit regroupant 72 outils pour f
   - `components/entete-outil.tsx` : en-tête de page d'outil (fil d'Ariane, nom), tiré du catalogue.
   - `lib/hooks.ts` : `useChrono` (temps écoulé avec pause), `useMaintenant`, `usePleinEcran`, `useEcranAllume`, `useTitreOnglet`, `useRaccourcis`.
   - `lib/temps.ts` (formatage des durées et des heures) et `lib/son.ts` (bips, sans fichier audio).
+  - `lib/hasard.ts` : tirages équitables (`entierAleatoire`, `melanger`, `lireListe`), toujours via `crypto.getRandomValues`.
+  - `components/liste-noms.tsx` : liste de noms partagée entre les outils de tirage (`useListeNoms`, `ChampNoms`).
+  - `components/bouton-copier.tsx` : bouton « Copier le résultat ».
   - `app/globals.css` : classes partagées (`.bouton`, `.champ`, `.ecran`, `.chiffres`, `.barre`, `.commandes`, `.reglages`...). Les styles propres à un outil vont dans son `*.module.css`.
 - Chaque outil a un `README.md` de quelques lignes dans son dossier.
 - `app/api/` : routes serveur (seul endroit où une clé secrète pourra être lue).
